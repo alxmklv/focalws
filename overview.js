@@ -105,53 +105,73 @@ $(document).ready(function() {
 
 
         // Function to display the selected content
-         function showContent(type, src) {
-             const mainContent = document.getElementById('main-content');
-             mainContent.innerHTML = ''; // Clear current content
+          function showContent(type, src) {
+              const mainContent = document.getElementById('main-content');
+              mainContent.innerHTML = ''; // Clear current content
 
-             if (type === 'image') {
-                 const img = document.createElement('img');
-                 img.src = src;
-                 img.alt = 'Main Content';
-                 mainContent.appendChild(img);
-             } else if (type === 'video') {
-                 const video = document.createElement('video');
-                 video.src = src;
-                 video.controls = true;
-                 mainContent.appendChild(video);
-             }
+              if (type === 'image') {
+                  const img = document.createElement('img');
+                  img.src = src;
+                  img.alt = 'Main Content';
+                  mainContent.appendChild(img);
+              } else if (type === 'video') {
+                  const video = document.createElement('video');
+                  video.src = src;
+                  video.controls = true;
+                  mainContent.appendChild(video);
+              }
 
-             // Update the active preview
-             const previews = document.getElementById('previews').getElementsByTagName('img');
-             for (let i = 0; i < previews.length; i++) {
-                 previews[i].classList.remove('active');
-             }
-             event.target.classList.add('active');
-         }
+              // Update the active preview
+              const previews = document.getElementById('previews').getElementsByTagName('img');
+              for (let i = 0; i < previews.length; i++) {
+                  previews[i].classList.remove('active');
+              }
+              event.target.classList.add('active');
+          }
 
-         // Function to initialize the lightbox with the first preview
-         function initializeLightbox() {
-             const firstPreview = document.querySelector('.previews img');
-             if (firstPreview) {
-                 const type = firstPreview.getAttribute('data-type');
-                 const src = firstPreview.getAttribute('data-src');
-                 showContent(type, src);
-                 firstPreview.classList.add('active'); // Mark the first preview as active
-             }
-         }
+          // Function to initialize the lightbox with the first preview
+          function initializeLightbox() {
+              const firstPreview = document.querySelector('.previews img');
+              if (firstPreview) {
+                  const type = firstPreview.getAttribute('data-type');
+                  const src = firstPreview.getAttribute('data-src');
+                  showContent(type, src);
+                  firstPreview.classList.add('active'); // Mark the first preview as active
+              }
+          }
 
-         // Event listener for clicks on previews
-         document.getElementById('previews').addEventListener('click', function(event) {
-             if (event.target.tagName === 'IMG') {
-                 const type = event.target.getAttribute('data-type');
-                 const src = event.target.getAttribute('data-src');
-                 showContent(type, src);
-             }
-         });
+          // Function to handle modal open
+          function openModal(modalId) {
+              const modal = document.getElementById(modalId);
+              if (modal) {
+                  modal.style.display = 'flex';
+                  initializeLightbox(); // Initialize lightbox when modal is opened
+              }
+          }
 
-         // Event listener for button clicks with specific class
-         document.addEventListener('click', function(event) {
-             if (event.target.classList.contains('init-lightbox-btn')) {
-                 initializeLightbox();
-             }
-         });
+          // Function to handle modal close
+          function closeModal(modalId) {
+              const modal = document.getElementById(modalId);
+              if (modal) {
+                  modal.style.display = 'none';
+              }
+          }
+
+          // Event listener for button clicks with data-modal-target attribute
+          document.addEventListener('click', function(event) {
+              if (event.target.hasAttribute('data-modal-target')) {
+                  const modalId = event.target.getAttribute('data-modal-target');
+                  if (event.target.classList.contains('close-btn')) {
+                      closeModal(modalId);
+                  } else {
+                      openModal(modalId);
+                  }
+              }
+          });
+
+          // Event listener for button clicks with specific class
+          document.addEventListener('click', function(event) {
+              if (event.target.classList.contains('init-lightbox-btn')) {
+                  initializeLightbox();
+              }
+          });
