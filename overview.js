@@ -104,76 +104,19 @@ $(document).ready(function() {
 
 //////////////////////////////
 
+// Function to open the lightbox
+function openLightbox(lightboxId) {
+  $('#' + lightboxId).fadeIn(); // Fade in the lightbox
+}
 
- // Function to display the selected content
- function showContent(type, src) {
-     const mainContent = document.getElementById('main-content');
-     mainContent.innerHTML = ''; // Clear current content
+// Function to close the lightbox
+function closeLightbox(lightboxId) {
+  $('#' + lightboxId).fadeOut(); // Fade out the lightbox
+}
 
-     if (type === 'image') {
-         const img = document.createElement('img');
-         img.src = src;
-         img.alt = 'Main Content';
-         mainContent.appendChild(img);
-     } else if (type === 'video') {
-         const video = document.createElement('video');
-         video.src = src;
-         video.controls = true;
-         mainContent.appendChild(video);
-     }
-
-     // Update the active preview
-     const previews = document.getElementById('previews').getElementsByTagName('img');
-     for (let i = 0; i < previews.length; i++) {
-         previews[i].classList.remove('active');
-     }
-     event.target.classList.add('active');
- }
-
- // Function to initialize the lightbox with the first preview
- function initializeLightbox() {
-     const firstPreview = document.querySelector('.previews img');
-     if (firstPreview) {
-         const type = firstPreview.getAttribute('data-type');
-         const src = firstPreview.getAttribute('data-src');
-         showContent(type, src);
-         firstPreview.classList.add('active'); // Mark the first preview as active
-     }
- }
-
- // Function to open modal and initialize lightbox
- function openModalAndInitializeLightbox(modalId) {
-     const modal = document.getElementById(modalId);
-     if (modal) {
-         modal.style.display = 'flex';
-         initializeLightbox(); // Initialize lightbox when modal is opened
-     }
- }
-
- // Function to handle modal close
- function closeModal(modalId) {
-     const modal = document.getElementById(modalId);
-     if (modal) {
-         modal.style.display = 'none';
-     }
- }
-
- // Event listener for button clicks with data-action attribute
- document.addEventListener('click', function(event) {
-     if (event.target.hasAttribute('data-action')) {
-         const action = event.target.getAttribute('data-action');
-         if (action === 'open-lightbox') {
-             openModalAndInitializeLightbox('lightbox-modal');
-         }
-     }
- });
-
- // Event listener for button clicks with data-modal-target attribute
- document.addEventListener('click', function(event) {
-     if (event.target.hasAttribute('data-modal-target')) {
-         const modalId = event.target.getAttribute('data-modal-target');
-         if (event.target.classList.contains('close-btn')) {
-             closeModal(modalId);
-         }
-     }
- });
+// Optional: Close the lightbox if the user clicks outside of it
+$(window).click(function(event) {
+  if ($(event.target).hasClass('lightbox')) {
+    $('.lightbox').fadeOut(); // Fade out all lightboxes
+  }
+});
