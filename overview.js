@@ -104,78 +104,60 @@ $(document).ready(function() {
 
 //////////////////////////////
 $(document).ready(function() {
-   // Function to open the modal
-   function openModal(modalId) {
-     $('#' + modalId).fadeIn(); // Fade in the modal
-   }
+    // Function to open the modal
+    function openModal(modalId) {
+      $('#' + modalId).fadeIn(); // Fade in the modal
+    }
 
-   // Function to close the modal
-   function closeModal(modalId) {
-     $('#' + modalId).fadeOut(); // Fade out the modal
-   }
+    // Function to close the modal
+    function closeModal(modalId) {
+      $('#' + modalId).fadeOut(); // Fade out the modal
+    }
 
-   // Function to load content into the main content area
-   function loadContent(contentUrl, isVideo) {
-     var $mainContent = $('#mainContent');
-     if (isVideo) {
-       $mainContent.html('<video controls><source src="' + contentUrl + '" type="video/mp4"></video>');
-     } else {
-       $mainContent.html('<img src="' + contentUrl + '" alt="Content">');
-     }
-   }
+    // Function to load content into the main content area
+    function loadContent(src, type) {
+      var $mainContent = $('#mainContent');
+      if (type === 'video') {
+        $mainContent.html('<video controls><source src="' + src + '" type="video/mp4"></video>');
+      } else {
+        $mainContent.html('<img src="' + src + '" alt="Content">');
+      }
+    }
 
-   // Function to initialize the gallery
-   function initializeGallery(previews) {
-     var $previewList = $('#previewList');
-     $previewList.empty();
-     previews.forEach(function(preview, index) {
-       var isActive = index === 0 ? ' active' : '';
-       var itemHtml = '<div class="preview-item' + isActive + '" data-content-url="' + preview.url + '" data-is-video="' + preview.isVideo + '">'
-                    + '<img src="' + preview.thumbnail + '" alt="Preview">'
-                    + '</div>';
-       $previewList.append(itemHtml);
-     });
+    // Event handler to handle clicks on elements with data-action attribute
+    $(document).on('click', '[data-action]', function() {
+      var action = $(this).data('action');
+      var modalId = $(this).data('modal-id');
 
-     // Load the initial content
-     if (previews.length > 0) {
-       var firstPreview = previews[0];
-       loadContent(firstPreview.url, firstPreview.isVideo);
-     }
-   }
+      if (action === 'open-modal') {
+        openModal(modalId);
+      } else if (action === 'close-modal') {
+        closeModal(modalId);
+      }
+    });
 
-   // Event handler to handle clicks on elements with data-action attribute
-   $(document).on('click', '[data-action]', function() {
-     var action = $(this).data('action');
-     var modalId = $(this).data('modal-id');
+    // Event handler for preview clicks
+    $(document).on('click', '.preview-item', function() {
+      $('.preview-item').removeClass('active');
+      $(this).addClass('active');
+      var src = $(this).data('src');
+      var type = $(this).data('type');
+      loadContent(src, type);
+    });
 
-     if (action === 'open-modal') {
-       openModal(modalId);
-     } else if (action === 'close-modal') {
-       closeModal(modalId);
-     }
-   });
+    // Close the modal if the user clicks outside of it
+    $(window).click(function(event) {
+      if ($(event.target).attr('id') === 'lightbox') {
+        closeModal('lightbox');
+      }
+    });
 
-   // Event handler for preview clicks
-   $(document).on('click', '.preview-item', function() {
-     $('.preview-item').removeClass('active');
-     $(this).addClass('active');
-     var contentUrl = $(this).data('content-url');
-     var isVideo = $(this).data('is-video');
-     loadContent(contentUrl, isVideo);
-   });
-
-   // Close the modal if the user clicks outside of it
-   $(window).click(function(event) {
-     if ($(event.target).attr('id') === 'lightbox') {
-       closeModal('lightbox');
-     }
-   });
-
-   // Initialize the gallery with sample data
-   var previews = [
-     { url: 'image1.jpg', thumbnail: 'thumb1.jpg', isVideo: false },
-     { url: 'video1.mp4', thumbnail: 'thumb2.jpg', isVideo: true },
-     { url: 'image2.jpg', thumbnail: 'thumb3.jpg', isVideo: false }
-   ];
-   initializeGallery(previews);
- });
+    // Load the initial content from the first preview
+    var $firstPreview = $('.preview-item').first();
+    if ($firstPreview.length) {
+      var initialSrc = $firstPreview.data('src');
+      var initialType = $firstPreview.data('type');
+      loadContent(initialSrc, initialType);
+      $firstPreview.addClass('active');
+    }
+  });
