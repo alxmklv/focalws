@@ -104,31 +104,7 @@ $(document).ready(function() {
 
 //////////////////////////////
 
-<!-- Button to open modal and initialize lightbox -->
-<button data-action="open-lightbox">Open Lightbox Modal</button>
 
-<!-- Modal -->
-<div class="modal" id="lightbox-modal">
- <div class="modal-content">
-     <span class="close-btn" data-modal-target="lightbox-modal">&times;</span>
-     <div class="main-content" id="main-content">
-         <!-- Content will be dynamically loaded here -->
-     </div>
-     <div class="previews-container">
-         <div class="previews" id="previews">
-             <div class="preview-item preview-video">
-                 <img src="video-preview.jpg" alt="Preview Video" data-type="video" data-src="video1.mp4">
-             </div>
-             <div class="preview-item">
-                 <img src="image1.jpg" alt="Preview Image 1" data-type="image" data-src="image1.jpg">
-             </div>
-             <!-- Additional previews can be added dynamically -->
-         </div>
-     </div>
- </div>
-</div>
-
-<script>
  // Function to display the selected content
  function showContent(type, src) {
      const mainContent = document.getElementById('main-content');
