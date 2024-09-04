@@ -1,5 +1,4 @@
-
-
+<script>
 // Issue Select feature
 // script.js
 $(document).ready(function() {
@@ -49,11 +48,61 @@ $(document).ready(function() {
     */
 });
 
+</script>
+
+<style>
+
+.issues_table_row .issue_buttongroup {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.issues_table_row:hover .issue_buttongroup,
+.issues_table_row.selected .issue_buttongroup {
+    opacity: 1;
+}
+</style>
+
+<style>
+
+.revenue_unrealized_bar {
+    background:
+        repeating-linear-gradient(
+            45deg,                      /* Diagonal lines */
+            #6F36F9,                    /* Start color */
+            #6F36F9 0.5rem,             /* End of first stripe */
+            rgba(255, 255, 255, 0.2) 0.5rem,  /* Start of next stripe */
+            rgba(255, 255, 255, 0.2) 1rem     /* End of next stripe, total width of stripe */
+        ),
+        #6F36F9;                        /* Solid color layer */
+    background-size: 100%;               /* Ensures that the solid layer covers the entire element */
+    background-blend-mode: normal;       /* Ensures the layers blend normally */
+}
 
 
-// Sparkline
+</style>
+
+<!-- Custom CSS for Tooltip -->
+    <style>
+       .jqstooltip {
+            background: rgba(30, 34, 65, 0.8) !important; /* Tooltip background color with opacity */
+            color: #FFFFFF !important; /* Tooltip text color */
+            font-size: 0.5rem; /* Font size */
+            padding: 0.25rem; /* Padding around text */
+            border-radius: 0.25rem; /* Rounded corners */
+            border: none !important; /* Remove any border */
+            box-shadow: none !important; /* Remove shadow if any */
+            height: 2rem !important;
+						min-width: 3rem !important;
+  			  	display: flex;
 
 
+        }
+        .jqsfield {font: 1rem !important;}
+
+    </style>
+
+     <script>
         $(document).ready(function() {
             var errorValues = [0, 0, 0, 0, 0, 0, 52];
             var warningValues = [0, 0, 0, 0, 0, 0, 103];
@@ -101,50 +150,4 @@ $(document).ready(function() {
                 spotRadius: 1
             });
         });
-
-
-        // Function to display the selected content
-               function showContent(type, src) {
-                   const mainContent = document.getElementById('main-content');
-                   mainContent.innerHTML = ''; // Clear current content
-
-                   if (type === 'image') {
-                       const img = document.createElement('img');
-                       img.src = src;
-                       img.alt = 'Main Content';
-                       mainContent.appendChild(img);
-                   } else if (type === 'video') {
-                       const video = document.createElement('video');
-                       video.src = src;
-                       video.controls = true;
-                       mainContent.appendChild(video);
-                   }
-
-                   // Update the active preview
-                   const previews = document.getElementById('previews').getElementsByTagName('img');
-                   for (let i = 0; i < previews.length; i++) {
-                       previews[i].classList.remove('active');
-                   }
-                   event.target.classList.add('active');
-               }
-
-               // Function to initialize the lightbox with the first preview
-               function initializeLightbox() {
-                   const firstPreview = document.querySelector('.previews img');
-                   const type = firstPreview.getAttribute('data-type');
-                   const src = firstPreview.getAttribute('data-src');
-                   showContent(type, src);
-                   firstPreview.classList.add('active'); // Mark the first preview as active
-               }
-
-               // Event listener for clicks on previews
-               document.getElementById('previews').addEventListener('click', function(event) {
-                   if (event.target.tagName === 'IMG') {
-                       const type = event.target.getAttribute('data-type');
-                       const src = event.target.getAttribute('data-src');
-                       showContent(type, src);
-                   }
-               });
-
-               // Initialize the lightbox with the first preview item
-               initializeLightbox();
+    </script>
