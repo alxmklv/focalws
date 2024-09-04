@@ -104,74 +104,100 @@ $(document).ready(function() {
 
 //////////////////////////////
 
-        // Function to display the selected content
-       function showContent(type, src) {
-           const mainContent = document.getElementById('main-content');
-           mainContent.innerHTML = ''; // Clear current content
+<!-- Button to open modal and initialize lightbox -->
+<button data-action="open-lightbox">Open Lightbox Modal</button>
 
-           if (type === 'image') {
-               const img = document.createElement('img');
-               img.src = src;
-               img.alt = 'Main Content';
-               mainContent.appendChild(img);
-           } else if (type === 'video') {
-               const video = document.createElement('video');
-               video.src = src;
-               video.controls = true;
-               mainContent.appendChild(video);
-           }
+<!-- Modal -->
+<div class="modal" id="lightbox-modal">
+ <div class="modal-content">
+     <span class="close-btn" data-modal-target="lightbox-modal">&times;</span>
+     <div class="main-content" id="main-content">
+         <!-- Content will be dynamically loaded here -->
+     </div>
+     <div class="previews-container">
+         <div class="previews" id="previews">
+             <div class="preview-item preview-video">
+                 <img src="video-preview.jpg" alt="Preview Video" data-type="video" data-src="video1.mp4">
+             </div>
+             <div class="preview-item">
+                 <img src="image1.jpg" alt="Preview Image 1" data-type="image" data-src="image1.jpg">
+             </div>
+             <!-- Additional previews can be added dynamically -->
+         </div>
+     </div>
+ </div>
+</div>
 
-           // Update the active preview
-           const previews = document.getElementById('previews').getElementsByTagName('img');
-           for (let i = 0; i < previews.length; i++) {
-               previews[i].classList.remove('active');
-           }
-           event.target.classList.add('active');
-       }
+<script>
+ // Function to display the selected content
+ function showContent(type, src) {
+     const mainContent = document.getElementById('main-content');
+     mainContent.innerHTML = ''; // Clear current content
 
-       // Function to open modal and initialize lightbox
-       function openAndInitializeLightbox(modalId) {
-           const modal = document.getElementById(modalId);
-           if (modal) {
-               modal.style.display = 'flex';
-               initializeLightbox(); // Initialize lightbox when modal is opened
-           }
-       }
+     if (type === 'image') {
+         const img = document.createElement('img');
+         img.src = src;
+         img.alt = 'Main Content';
+         mainContent.appendChild(img);
+     } else if (type === 'video') {
+         const video = document.createElement('video');
+         video.src = src;
+         video.controls = true;
+         mainContent.appendChild(video);
+     }
 
-       // Function to initialize the lightbox with the first preview
-       function initializeLightbox() {
-           const firstPreview = document.querySelector('.previews img');
-           if (firstPreview) {
-               const type = firstPreview.getAttribute('data-type');
-               const src = firstPreview.getAttribute('data-src');
-               showContent(type, src);
-               firstPreview.classList.add('active'); // Mark the first preview as active
-           }
-       }
+     // Update the active preview
+     const previews = document.getElementById('previews').getElementsByTagName('img');
+     for (let i = 0; i < previews.length; i++) {
+         previews[i].classList.remove('active');
+     }
+     event.target.classList.add('active');
+ }
 
-       // Function to handle modal close
-       function closeModal(modalId) {
-           const modal = document.getElementById(modalId);
-           if (modal) {
-               modal.style.display = 'none';
-           }
-       }
+ // Function to initialize the lightbox with the first preview
+ function initializeLightbox() {
+     const firstPreview = document.querySelector('.previews img');
+     if (firstPreview) {
+         const type = firstPreview.getAttribute('data-type');
+         const src = firstPreview.getAttribute('data-src');
+         showContent(type, src);
+         firstPreview.classList.add('active'); // Mark the first preview as active
+     }
+ }
 
-       // Event listener for button clicks with data-modal-target attribute
-       document.addEventListener('click', function(event) {
-           if (event.target.hasAttribute('data-modal-target')) {
-               const modalId = event.target.getAttribute('data-modal-target');
-               if (event.target.classList.contains('close-btn')) {
-                   closeModal(modalId);
-               } else {
-                   openAndInitializeLightbox(modalId);
-               }
-           }
-       });
+ // Function to open modal and initialize lightbox
+ function openModalAndInitializeLightbox(modalId) {
+     const modal = document.getElementById(modalId);
+     if (modal) {
+         modal.style.display = 'flex';
+         initializeLightbox(); // Initialize lightbox when modal is opened
+     }
+ }
 
-       // Event listener for button clicks with specific class
-       document.addEventListener('click', function(event) {
-           if (event.target.classList.contains('init-lightbox-btn')) {
-               initializeLightbox();
-           }
-       });
+ // Function to handle modal close
+ function closeModal(modalId) {
+     const modal = document.getElementById(modalId);
+     if (modal) {
+         modal.style.display = 'none';
+     }
+ }
+
+ // Event listener for button clicks with data-action attribute
+ document.addEventListener('click', function(event) {
+     if (event.target.hasAttribute('data-action')) {
+         const action = event.target.getAttribute('data-action');
+         if (action === 'open-lightbox') {
+             openModalAndInitializeLightbox('lightbox-modal');
+         }
+     }
+ });
+
+ // Event listener for button clicks with data-modal-target attribute
+ document.addEventListener('click', function(event) {
+     if (event.target.hasAttribute('data-modal-target')) {
+         const modalId = event.target.getAttribute('data-modal-target');
+         if (event.target.classList.contains('close-btn')) {
+             closeModal(modalId);
+         }
+     }
+ });
