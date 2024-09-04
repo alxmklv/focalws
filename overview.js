@@ -104,19 +104,33 @@ $(document).ready(function() {
 
 //////////////////////////////
 
-// Function to open the lightbox
-function openLightbox(lightboxId) {
-  $('#' + lightboxId).fadeIn(); // Fade in the lightbox
-}
-
-// Function to close the lightbox
-function closeLightbox(lightboxId) {
-  $('#' + lightboxId).fadeOut(); // Fade out the lightbox
-}
-
-// Optional: Close the lightbox if the user clicks outside of it
-$(window).click(function(event) {
-  if ($(event.target).hasClass('lightbox')) {
-    $('.lightbox').fadeOut(); // Fade out all lightboxes
+$(document).ready(function() {
+  // Function to open the modal
+  function openModal(modalId) {
+    $('#' + modalId).fadeIn(); // Fade in the modal
   }
+
+  // Function to close the modal
+  function closeModal(modalId) {
+    $('#' + modalId).fadeOut(); // Fade out the modal
+  }
+
+  // Event handler to handle clicks on elements with data-action attribute
+  $(document).on('click', '[data-action]', function() {
+    var action = $(this).data('action');
+    var modalId = $(this).data('modal-id');
+
+    if (action === 'open-modal') {
+      openModal(modalId);
+    } else if (action === 'close-modal') {
+      closeModal(modalId);
+    }
+  });
+
+  // Close the modal if the user clicks outside of it
+  $(window).click(function(event) {
+    if ($(event.target).attr('id') === 'lightbox') {
+      closeModal('lightbox');
+    }
+  });
 });
