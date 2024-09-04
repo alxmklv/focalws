@@ -103,48 +103,53 @@ $(document).ready(function() {
         });
 
 
-        // Function to display the selected content
-               function showContent(type, src) {
-                   const mainContent = document.getElementById('main-content');
-                   mainContent.innerHTML = ''; // Clear current content
 
-                   if (type === 'image') {
-                       const img = document.createElement('img');
-                       img.src = src;
-                       img.alt = 'Main Content';
-                       mainContent.appendChild(img);
-                   } else if (type === 'video') {
-                       const video = document.createElement('video');
-                       video.src = src;
-                       video.controls = true;
-                       mainContent.appendChild(video);
-                   }
+      // Function to display the selected content
+      function showContent(type, src) {
+          const mainContent = document.getElementById('main-content');
+          mainContent.innerHTML = ''; // Clear current content
 
-                   // Update the active preview
-                   const previews = document.getElementById('previews').getElementsByTagName('img');
-                   for (let i = 0; i < previews.length; i++) {
-                       previews[i].classList.remove('active');
-                   }
-                   event.target.classList.add('active');
-               }
+          if (type === 'image') {
+              const img = document.createElement('img');
+              img.src = src;
+              img.alt = 'Main Content';
+              mainContent.appendChild(img);
+          } else if (type === 'video') {
+              const video = document.createElement('video');
+              video.src = src;
+              video.controls = true;
+              mainContent.appendChild(video);
+          }
 
-               // Function to initialize the lightbox with the first preview
-               function initializeLightbox() {
-                   const firstPreview = document.querySelector('.previews img');
-                   const type = firstPreview.getAttribute('data-type');
-                   const src = firstPreview.getAttribute('data-src');
-                   showContent(type, src);
-                   firstPreview.classList.add('active'); // Mark the first preview as active
-               }
+          // Update the active preview
+          const previews = document.getElementById('previews').getElementsByTagName('img');
+          for (let i = 0; i < previews.length; i++) {
+              previews[i].classList.remove('active');
+          }
+          event.target.classList.add('active');
+      }
 
-               // Event listener for clicks on previews
-               document.getElementById('previews').addEventListener('click', function(event) {
-                   if (event.target.tagName === 'IMG') {
-                       const type = event.target.getAttribute('data-type');
-                       const src = event.target.getAttribute('data-src');
-                       showContent(type, src);
-                   }
-               });
+      // Function to initialize the lightbox with the first preview
+      function initializeLightbox() {
+          const firstPreview = document.querySelector('.previews img');
+          if (firstPreview) {
+              const type = firstPreview.getAttribute('data-type');
+              const src = firstPreview.getAttribute('data-src');
+              showContent(type, src);
+              firstPreview.classList.add('active'); // Mark the first preview as active
+          }
+      }
 
-               // Initialize the lightbox with the first preview item
-               initializeLightbox();
+      // Event listener for clicks on previews
+      document.getElementById('previews').addEventListener('click', function(event) {
+          if (event.target.tagName === 'IMG') {
+              const type = event.target.getAttribute('data-type');
+              const src = event.target.getAttribute('data-src');
+              showContent(type, src);
+          }
+      });
+
+      // Initialize the lightbox with the first preview item when the DOM is fully loaded
+      window.addEventListener('DOMContentLoaded', (event) => {
+          initializeLightbox();
+      });
