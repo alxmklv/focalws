@@ -172,105 +172,50 @@ $(document).ready(function() {
 
 /////
 
+// Load JSON and clone the template for each issue
+$.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
+    var template = $('#issue-template');
+    var issuesList = $('#issues-list');
 
-$(document).ready(function() {
-  // Function to create and insert canvas element
-  function insertCanvas(container) {
-    const canvas = document.createElement('canvas');
-    $(container).append(canvas);
-    return canvas;
-  }
+    $.each(data, function(index, issue) {
+        // Clone the template and populate the data
+        var clonedIssue = template.clone().removeAttr('id').show();
+        clonedIssue.find('.issue-title').text(issue['issue-type']);
+        clonedIssue.find('.issue-severity').text(issue['issue-severity']);
 
-  // Function to resize the canvas to match the parent element
-  function resizeCanvas(canvas) {
-    const $parent = $(canvas).parent();
-    canvas.width = $parent.width();
-    canvas.height = $parent.height();
-  }
+        // Attach the data attributes for later use
+        clonedIssue.attr('data-issue-id', issue.issueID)
+            .attr('data-title', issue['issue-type'])
+            .attr('data-severity', issue['issue-severity'])
+            .attr('data-product', issue['issue-product'])
+            .attr('data-url', issue['issue-product-url'])
+            .attr('data-revenue', issue['issue-revenue'])
+            .attr('data-description', issue['issue-description'])
+            .attr('data-image', issue['issue-image-link'])
+            .attr('data-video', issue['issue-video-link']);
 
-  // Function to create a chart in each canvas
-  function createChart($container) {
-    const sparklineColor = $container.data("color");
-    const canvas = insertCanvas($container);
-
-    // Resize canvas to match the parent
-    resizeCanvas(canvas);
-
-    // Create the chart
-    const ctx = canvas.getContext("2d");
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: [
-          "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ],
-        datasets: [
-          {
-            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 59], // Updated data array
-            backgroundColor: sparklineColor + "26", // Set background color
-            borderColor: sparklineColor, // Line color
-            borderWidth: 2,
-            fill: true // Enable filling under the line
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false, // Ensures the chart scales with its container
-        plugins: {
-          legend: {
-            display: false // Hide the legend
-          },
-          tooltip: {
-            enabled: false // Disable tooltips
-          }
-        },
-        elements: {
-          line: {
-            borderColor: sparklineColor,
-            backgroundColor: sparklineColor + "26", // Background color
-            borderWidth: 2
-          },
-          point: {
-            radius: 0
-          }
-        },
-        scales: {
-          y: {
-            display: false, // Hide y-axis
-            ticks: {
-              display: false // Hide y-axis labels
-            }
-          },
-          x: {
-            display: false, // Hide x-axis
-            ticks: {
-              display: false // Hide x-axis labels
-            }
-          }
-        }
-      }
+        // Append the cloned issue to the list
+        issuesList.append(clonedIssue);
     });
-  }
+});
 
-  // Iterate over all elements with data-sparkline="yes" and create charts
-  $('[data-sparkline="yes"]').each(function() {
-    const $container = $(this);
-    createChart($container);
-  });
+// Update sidebar when an issue is clicked
+$(document).on('click', '#issues-list div', function() {
+    var issueTitle = $(this).data('title');
+    var issueSeverity = $(this).data('severity');
+    var issueProduct = $(this).data('product');
+    var issueUrl = $(this).data('url');
+    var issueRevenue = $(this).data('revenue');
+    var issueDescription = $(this).data('description');
+    var issueImage = $(this).data('image');
+    var issueVideo = $(this).data('video');
 
-  // Redraw charts on window resize
-  $(window).resize(function() {
-    $('[data-sparkline="yes"]').each(function() {
-      const $container = $(this);
-      const canvas = $container.find('canvas')[0];
-      resizeCanvas(canvas);
-      // Update the chart to resize it
-      const chart = Chart.getChart(canvas); // Retrieve the Chart instance
-      if (chart) {
-        chart.resize(); // Ensure the chart resizes correctly
-      }
-    });
-  });
+    // Update sidebar content
+    $('#issue-title').text(issueTitle);
+    $('#issue-severity').text(issueSeverity);
+    $('#issue-product-link').text(issueProduct).attr('href', issueUrl);
+    $('#issue-revenue').text(issueRevenue);
+    $('#issue-description').text(issueDescription);
+    $('#issue-image').attr('src', issueImage);
+    $('#issue-video-link').attr('href', issueVideo);
 });
