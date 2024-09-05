@@ -1,0 +1,47 @@
+[
+  {
+    "issueID": "000001",
+    "issue-type": "Broken Product Page"
+    "issue-severity": "High"
+    "issue-product": "Diabolo Headband"
+    "issue-product-url": "https://www.cartier.com/en-us/bags-and-accessories/accessories/scarves/diabolo-de-cartier-headband-CROS000089.html"
+    "issue-revenue": "-100%"
+    "issue-description": "From the Diabolo Headband PDP, clicking on the Black variant redirects the user to a broken page"
+    "issue-image-link": "https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif"
+    "issue-video-link": "https://focalvideo.s3.us-east-2.amazonaws.com/Diabolo+Headband.mov"
+
+  },
+  {
+    "issueID": "000002",
+    "issue-type": "Product Page Taken Offline by Error"
+    "issue-severity": "High"
+    "issue-product": "Ballon Blanc Watch"
+    "issue-product-url": "https://www.cartier.com/en-us/ballon-de-cartier.html"
+    "issue-revenue": "-100%"
+    "issue-description": "From the ballon bleu PDP, clicking on the ballon blanc recommended products redirect to a missing page"
+    "issue-image-link": "https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2742b573d107a32a50d_ballon_blanc.avif"
+    "issue-video-link": "https://focalvideo.s3.us-east-2.amazonaws.com/Ballon+Blanc.mov"
+  },
+  {
+    "issueID": "000003",
+    "issue-type": "Slow Loading Product Page"
+    "issue-severity": "Medium"
+    "issue-product": "Love Necklace 3 Diamonds"
+    "issue-product-url": "https://www.cartier.com/en-us/jewelry/necklaces/love-necklace-3-diamonds-CRB7014500.html"
+    "issue-revenue": "-40%"
+    "issue-description": "The Love Necklace 3 Diamonds PDP takes 4 seconds to load, significantly longer than average"
+    "issue-image-link": "https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b273811be207fdbd9de4_love_necklace_3_diamonds.avif"
+    "issue-video-link": "https://focalvideo.s3.us-east-2.amazonaws.com/Love_Necklace_3_diamonds.mov"
+  },
+  {
+    "issueID": "000004",
+    "issue-type": "Broken Images or Missing Media"
+    "issue-severity": "Medium"
+    "issue-product": "Diamond Collection Page"
+    "issue-product-url": "https://www.cartier.com/en-us/jewelry/rings/diamond-collection/"
+    "issue-revenue": "-40%"
+    "issue-description": "The Diamond Collection Page header contains a broken image, with no placeholder in it’s place"
+    "issue-image-link": "https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2740eaabbccdfad9c9f_diamond_collection_rings.avif"
+    "issue-video-link": "https://focalvideo.s3.us-east-2.amazonaws.com/diamond_collection_rings.mov"
+  }
+]

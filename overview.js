@@ -168,3 +168,109 @@ $(document).ready(function() {
     $firstPreview.addClass('active');
   }
 });
+
+
+/////
+
+
+$(document).ready(function() {
+  // Function to create and insert canvas element
+  function insertCanvas(container) {
+    const canvas = document.createElement('canvas');
+    $(container).append(canvas);
+    return canvas;
+  }
+
+  // Function to resize the canvas to match the parent element
+  function resizeCanvas(canvas) {
+    const $parent = $(canvas).parent();
+    canvas.width = $parent.width();
+    canvas.height = $parent.height();
+  }
+
+  // Function to create a chart in each canvas
+  function createChart($container) {
+    const sparklineColor = $container.data("color");
+    const canvas = insertCanvas($container);
+
+    // Resize canvas to match the parent
+    resizeCanvas(canvas);
+
+    // Create the chart
+    const ctx = canvas.getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: [
+          "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ],
+        datasets: [
+          {
+            data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 59], // Updated data array
+            backgroundColor: sparklineColor + "26", // Set background color
+            borderColor: sparklineColor, // Line color
+            borderWidth: 2,
+            fill: true // Enable filling under the line
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, // Ensures the chart scales with its container
+        plugins: {
+          legend: {
+            display: false // Hide the legend
+          },
+          tooltip: {
+            enabled: false // Disable tooltips
+          }
+        },
+        elements: {
+          line: {
+            borderColor: sparklineColor,
+            backgroundColor: sparklineColor + "26", // Background color
+            borderWidth: 2
+          },
+          point: {
+            radius: 0
+          }
+        },
+        scales: {
+          y: {
+            display: false, // Hide y-axis
+            ticks: {
+              display: false // Hide y-axis labels
+            }
+          },
+          x: {
+            display: false, // Hide x-axis
+            ticks: {
+              display: false // Hide x-axis labels
+            }
+          }
+        }
+      }
+    });
+  }
+
+  // Iterate over all elements with data-sparkline="yes" and create charts
+  $('[data-sparkline="yes"]').each(function() {
+    const $container = $(this);
+    createChart($container);
+  });
+
+  // Redraw charts on window resize
+  $(window).resize(function() {
+    $('[data-sparkline="yes"]').each(function() {
+      const $container = $(this);
+      const canvas = $container.find('canvas')[0];
+      resizeCanvas(canvas);
+      // Update the chart to resize it
+      const chart = Chart.getChart(canvas); // Retrieve the Chart instance
+      if (chart) {
+        chart.resize(); // Ensure the chart resizes correctly
+      }
+    });
+  });
+});
