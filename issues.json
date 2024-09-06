@@ -1,6 +1,6 @@
 [
   {
-    "issueID": "000001",
+    "issueID": "000001"
     "issue-type": "Broken Product Page"
     "issue-severity": "High"
     "issue-product": "Diabolo Headband"
@@ -12,7 +12,7 @@
 
   },
   {
-    "issueID": "000002",
+    "issueID": "000002"
     "issue-type": "Product Page Taken Offline by Error"
     "issue-severity": "High"
     "issue-product": "Ballon Blanc Watch"
@@ -23,7 +23,7 @@
     "issue-video-link": "https://focalvideo.s3.us-east-2.amazonaws.com/Ballon+Blanc.mov"
   },
   {
-    "issueID": "000003",
+    "issueID": "000003"
     "issue-type": "Slow Loading Product Page"
     "issue-severity": "Medium"
     "issue-product": "Love Necklace 3 Diamonds"
@@ -34,7 +34,7 @@
     "issue-video-link": "https://focalvideo.s3.us-east-2.amazonaws.com/Love_Necklace_3_diamonds.mov"
   },
   {
-    "issueID": "000004",
+    "issueID": "000004"
     "issue-type": "Broken Images or Missing Media"
     "issue-severity": "Medium"
     "issue-product": "Diamond Collection Page"
