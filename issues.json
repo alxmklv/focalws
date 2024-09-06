@@ -9,7 +9,7 @@
       "issue-description":"From the Diabolo Headband PDP, clicking on the Black variant redirects the user to a broken page",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Diabolo+Headband.mov",
-      "issue-fix-1h":"- Google PageSpeed Insights:",
+      "issue-fix-1h":"Google PageSpeed Insights:",
       "issue-fix-1c":"Regularly use Google PageSpeed Insights or Lighthouse to monitor page loading times.",
       "issue-fix-2h":"Real User Monitoring (RUM):",
       "issue-fix-2c":"Implement New Relic or Dynatrace to track actual user experiences and identify slow-loading pages.",
