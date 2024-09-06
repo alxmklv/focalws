@@ -221,4 +221,3 @@ $(document).ready(function() {
             console.error("Issue not found: " + issueID);
         }
     });
-});
