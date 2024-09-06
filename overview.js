@@ -217,7 +217,11 @@ $(document).ready(function() {
                     $('#issue-severity').addClass('info');
                     break;
             }
+
+            // Update issue inspect URL
+            $('#issue-inspect').attr('href', issue['issue-product-url']);
         } else {
             console.error("Issue not found: " + issueID);
         }
     });
+});
