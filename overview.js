@@ -171,51 +171,35 @@ $(document).ready(function() {
 
 
 /////
+$(document).ready(function() {
+    var issueData = {}; // Object to hold JSON data
 
-// Load JSON and clone the template for each issue
-$.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
-    var template = $('#issue-template');
-    var issuesList = $('#issues-list');
-
-    $.each(data, function(index, issue) {
-        // Clone the template and populate the data
-        var clonedIssue = template.clone().removeAttr('id').show();
-        clonedIssue.find('.issue-title').text(issue['issue-type']);
-        clonedIssue.find('.issue-severity').text(issue['issue-severity']);
-
-        // Attach the data attributes for later use
-        clonedIssue.attr('data-issue-id', issue.issueID)
-            .attr('data-title', issue['issue-type'])
-            .attr('data-severity', issue['issue-severity'])
-            .attr('data-product', issue['issue-product'])
-            .attr('data-url', issue['issue-product-url'])
-            .attr('data-revenue', issue['issue-revenue'])
-            .attr('data-description', issue['issue-description'])
-            .attr('data-image', issue['issue-image-link'])
-            .attr('data-video', issue['issue-video-link']);
-
-        // Append the cloned issue to the list
-        issuesList.append(clonedIssue);
+    // Load JSON data
+    $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
+        // Store JSON data in the issueData object for later use
+        $.each(data, function(index, issue) {
+            issueData[issue.issueID] = issue;
+        });
+    }).fail(function() {
+        console.error("Failed to load JSON data.");
     });
-});
 
-// Update sidebar when an issue is clicked
-$(document).on('click', '#issues-list div', function() {
-    var issueTitle = $(this).data('title');
-    var issueSeverity = $(this).data('severity');
-    var issueProduct = $(this).data('product');
-    var issueUrl = $(this).data('url');
-    var issueRevenue = $(this).data('revenue');
-    var issueDescription = $(this).data('description');
-    var issueImage = $(this).data('image');
-    var issueVideo = $(this).data('video');
+    // Update sidebar when an issue is clicked
+    $('#itemList').on('click', '.issues_table_row', function() {
+        var issueID = $(this).data('issue-id');
+        var issue = issueData[issueID]; // Get issue details by ID
 
-    // Update sidebar content
-    $('#issue-title').text(issueTitle);
-    $('#issue-severity').text(issueSeverity);
-    $('#issue-product-link').text(issueProduct).attr('href', issueUrl);
-    $('#issue-revenue').text(issueRevenue);
-    $('#issue-description').text(issueDescription);
-    $('#issue-image').attr('src', issueImage);
-    $('#issue-video-link').attr('href', issueVideo);
+        if (issue) {
+            // Update sidebar content
+            $('#issue-title').text(issue['issue-type']);
+            $('#issue-severity').text(issue['issue-severity']);
+            $('#issue-product-link').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+            $('#issue-revenue').text(issue['issue-revenue']);
+            $('#issue-description').text(issue['issue-description']);
+            $('#issue-image').attr('src', issue['issue-image-link']);
+            $('#issue-video-link').attr('href', issue['issue-video-link']);
+        } else {
+            console.error("Issue not found: " + issueID);
+        }
+    });
 });
