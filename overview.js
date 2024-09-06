@@ -171,6 +171,10 @@ $(document).ready(function() {
 
 
 ////
+
+
+
+
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -207,11 +211,15 @@ $(document).ready(function() {
             imageElement.attr('src', ''); // Clear current src
             imageElement.attr('srcset', ''); // Clear current srcset
             imageElement.attr('src', issue['issue-image-link']); // Set new src
-            // Optionally update srcset if needed
-            // imageElement.attr('srcset', issue['issue-image-link']); // Uncomment if srcset needs to be updated
+
+            // Update data-src attribute for image URL
+            $('[data-target="img-url"]').attr('data-src', issue['issue-image-link']);
 
             // Update video link
             $('[data-target="issue-video-link"]').attr('href', issue['issue-video-link']);
+
+            // Update data-src attribute for video URL
+            $('[data-target="video-url"]').attr('data-src', issue['issue-video-link']);
 
             // Update severity class only
             var severityElement = $('[data-target="issue-severity"]');
