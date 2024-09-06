@@ -104,7 +104,8 @@ $(document).ready(function() {
 
 //
 
-////
+///
+
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -146,13 +147,10 @@ $(document).ready(function() {
 
             // Update data-src attribute for video URL
             var videoUrlElement = $('[data-target="video-url"]');
-            console.log("Updating video URL:", issue['issue-video-link']); // Debugging line
             videoUrlElement.attr('data-src', issue['issue-video-link']);
-            console.log("Video URL updated:", videoUrlElement.attr('data-src')); // Debugging line
 
             // Set data-src for #videoPreview
             $('#videoPreview').attr('data-src', issue['issue-video-link']);
-            console.log("Video Preview data-src updated:", $('#videoPreview').attr('data-src')); // Debugging line
 
             // Update severity class only
             var severityElement = $('[data-target="issue-severity"]');
@@ -171,92 +169,87 @@ $(document).ready(function() {
             console.error("Issue not found:", issueID);
         }
     });
-});
 
-
-/////////////////////////////
-
-$(document).ready(function() {
-  // Function to open the modal
-  function openModal(modalId) {
-    console.log('Opening modal:', modalId);
-    $('#' + modalId).fadeIn(); // Fade in the modal
-  }
-
-  // Function to close the modal
-  function closeModal(modalId) {
-    console.log('Closing modal:', modalId);
-    $('#' + modalId).fadeOut(); // Fade out the modal
-  }
-
-  // Function to load content into the main content area
-  function loadContent(src, type) {
-    var $mainContent = $('#mainContent');
-    console.log('Loading content. Type:', type, 'Source:', src);
-
-    if (type === 'video') {
-      var $existingVideo = $mainContent.find('video');
-      if ($existingVideo.length) {
-        console.log('Found existing video element.');
-        // Set the src directly on the video tag
-        $existingVideo.attr('src', src);
-        $existingVideo[0].load(); // Reload the video with new source
-      } else {
-        console.log('No video element found. Creating new video element.');
-        // Create a new video element
-        $mainContent.html('<video controls src="' + src + '"></video>');
-      }
-    } else {
-      console.log('Loading image content.');
-      // Load image content
-      $mainContent.html('<img src="' + src + '" alt="Content">');
+    // Function to open the modal
+    function openModal(modalId) {
+        console.log('Opening modal:', modalId);
+        $('#' + modalId).fadeIn(); // Fade in the modal
     }
-  }
 
-  // Event handler to handle clicks on elements with data-action attribute
-  $(document).on('click', '[data-action]', function() {
-    var action = $(this).data('action');
-    var modalId = $(this).data('modal-id');
-
-    if (action === 'open-modal') {
-      openModal(modalId);
-    } else if (action === 'close-modal') {
-      closeModal(modalId);
+    // Function to close the modal
+    function closeModal(modalId) {
+        console.log('Closing modal:', modalId);
+        $('#' + modalId).fadeOut(); // Fade out the modal
     }
-  });
 
-  // Event handler for preview clicks
-  $(document).on('click', '.preview-item', function() {
-    console.log('Preview item clicked.');
-    $('.preview-item').removeClass('active');
-    $(this).addClass('active');
-    var src = $(this).data('src');
-    var type = $(this).data('type');
-    console.log('Preview data - Source:', src, 'Type:', type);
-    loadContent(src, type);
-  });
+    // Function to load content into the main content area
+    function loadContent(src, type) {
+        var $mainContent = $('#mainContent');
+        console.log('Loading content. Type:', type, 'Source:', src);
 
-  // Close the modal if the user clicks outside of it
-  $(window).click(function(event) {
-    if ($(event.target).attr('id') === 'lightbox') {
-      closeModal('lightbox');
+        if (type === 'video') {
+            var $existingVideo = $mainContent.find('video');
+            if ($existingVideo.length) {
+                console.log('Found existing video element.');
+                // Set the src directly on the video tag
+                $existingVideo.attr('src', src);
+                $existingVideo[0].load(); // Reload the video with new source
+            } else {
+                console.log('No video element found. Creating new video element.');
+                // Create a new video element
+                $mainContent.html('<video controls src="' + src + '"></video>');
+            }
+        } else {
+            console.log('Loading image content.');
+            // Load image content
+            $mainContent.html('<img src="' + src + '" alt="Content">');
+        }
     }
-  });
 
-  // Close the modal if the Escape key is pressed
-  $(document).keydown(function(event) {
-    if (event.key === "Escape") {
-      closeModal('lightbox');
+    // Event handler to handle clicks on elements with data-action attribute
+    $(document).on('click', '[data-action]', function() {
+        var action = $(this).data('action');
+        var modalId = $(this).data('modal-id');
+
+        if (action === 'open-modal') {
+            openModal(modalId);
+        } else if (action === 'close-modal') {
+            closeModal(modalId);
+        }
+    });
+
+    // Event handler for preview clicks
+    $(document).on('click', '.preview-item', function() {
+        console.log('Preview item clicked.');
+        $('.preview-item').removeClass('active');
+        $(this).addClass('active');
+        var src = $(this).data('src');
+        var type = $(this).data('type');
+        console.log('Preview data - Source:', src, 'Type:', type);
+        loadContent(src, type);
+    });
+
+    // Close the modal if the user clicks outside of it
+    $(window).click(function(event) {
+        if ($(event.target).attr('id') === 'lightbox') {
+            closeModal('lightbox');
+        }
+    });
+
+    // Close the modal if the Escape key is pressed
+    $(document).keydown(function(event) {
+        if (event.key === "Escape") {
+            closeModal('lightbox');
+        }
+    });
+
+    // Load the initial content from the first preview
+    var $firstPreview = $('.preview-item').first();
+    if ($firstPreview.length) {
+        console.log('Loading initial content from the first preview.');
+        var initialSrc = $firstPreview.data('src');
+        var initialType = $firstPreview.data('type');
+        loadContent(initialSrc, initialType);
+        $firstPreview.addClass('active');
     }
-  });
-
-  // Load the initial content from the first preview
-  var $firstPreview = $('.preview-item').first();
-  if ($firstPreview.length) {
-    console.log('Loading initial content from the first preview.');
-    var initialSrc = $firstPreview.data('src');
-    var initialType = $firstPreview.data('type');
-    loadContent(initialSrc, initialType);
-    $firstPreview.addClass('active');
-  }
 });
