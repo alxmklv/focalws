@@ -106,6 +106,7 @@ $(document).ready(function() {
 
 ///
 
+
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -118,11 +119,26 @@ $(document).ready(function() {
                 issueData[issue.issueID] = issue;
             });
             console.log("JSON data successfully loaded.");
+
+            // Load the initial content from the first preview only after JSON is loaded
+            loadInitialContentFromFirstPreview();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error("Failed to load JSON data:", textStatus, errorThrown);
         }
     });
+
+    // Function to load initial content from the first preview
+    function loadInitialContentFromFirstPreview() {
+        var $firstPreview = $('.preview-item').first();
+        if ($firstPreview.length) {
+            console.log('Loading initial content from the first preview.');
+            var initialSrc = $firstPreview.data('src');
+            var initialType = $firstPreview.data('type');
+            loadContent(initialSrc, initialType);
+            $firstPreview.addClass('active');
+        }
+    }
 
     // Update sidebar when an issue is clicked
     $('#itemList').on('click', '.issues_table_row', function() {
@@ -242,14 +258,4 @@ $(document).ready(function() {
             closeModal('lightbox');
         }
     });
-
-    // Load the initial content from the first preview
-    var $firstPreview = $('.preview-item').first();
-    if ($firstPreview.length) {
-        console.log('Loading initial content from the first preview.');
-        var initialSrc = $firstPreview.data('src');
-        var initialType = $firstPreview.data('type');
-        loadContent(initialSrc, initialType);
-        $firstPreview.addClass('active');
-    }
 });
