@@ -105,7 +105,6 @@ $(document).ready(function() {
 //
 
 ////
-
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -136,13 +135,26 @@ $(document).ready(function() {
             $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
             $('[data-target="issue-description"]').text(issue['issue-description']);
 
+            // Clear and update issue image
             var imageElement = $('[data-target="issue-image"]');
             imageElement.attr('src', '').attr('srcset', '').attr('src', issue['issue-image-link']);
             $('[data-target="img-url"]').attr('data-src', issue['issue-image-link']);
 
-            $('[data-target="issue-video-link"]').attr('href', issue['issue-video-link']);
-            $('[data-target="video-url"]').attr('data-src', issue['issue-video-link']);
+            // Update video link directly
+            var videoElement = $('[data-target="issue-video-link"]');
+            videoElement.attr('href', issue['issue-video-link']);
 
+            // Update data-src attribute for video URL
+            var videoUrlElement = $('[data-target="video-url"]');
+            console.log("Updating video URL:", issue['issue-video-link']); // Debugging line
+            videoUrlElement.attr('data-src', issue['issue-video-link']);
+            console.log("Video URL updated:", videoUrlElement.attr('data-src')); // Debugging line
+
+            // Set data-src for #videoPreview
+            $('#videoPreview').attr('data-src', issue['issue-video-link']);
+            console.log("Video Preview data-src updated:", $('#videoPreview').attr('data-src')); // Debugging line
+
+            // Update severity class only
             var severityElement = $('[data-target="issue-severity"]');
             severityElement.removeClass('error warning info').addClass(function() {
                 switch (issue['issue-severity']) {
@@ -153,6 +165,7 @@ $(document).ready(function() {
                 }
             });
 
+            // Update issue inspect URL
             $('[data-target="issue-inspect"]').attr('href', issue['issue-product-url']);
         } else {
             console.error("Issue not found:", issueID);
