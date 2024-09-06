@@ -175,13 +175,19 @@ $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
     // Load JSON data
-    $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
-        // Store JSON data in the issueData object for later use
-        $.each(data, function(index, issue) {
-            issueData[issue.issueID] = issue;
-        });
-    }).fail(function() {
-        console.error("Failed to load JSON data.");
+    $.ajax({
+        url: 'https://alxmklv.github.io/focalws/issues.json',
+        dataType: 'json',
+        success: function(data) {
+            // Store JSON data in the issueData object for later use
+            $.each(data, function(index, issue) {
+                issueData[issue.issueID] = issue;
+            });
+            console.log("JSON data successfully loaded.");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Failed to load JSON data:", textStatus, errorThrown);
+        }
     });
 
     // Update sidebar when an issue is clicked
