@@ -170,8 +170,7 @@ $(document).ready(function() {
 });
 
 
-/////
-$(document).ready(function() {
+/////$(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
     // Load JSON data
@@ -198,9 +197,14 @@ $(document).ready(function() {
         if (issue) {
             // Update sidebar content
             $('#issue-title').text(issue['issue-type']);
-            $('#issue-severity').text(issue['issue-severity']).removeClass('error warning info');
+            $('#issue-product-link').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+            $('#issue-revenue').text(issue['issue-revenue']);
+            $('#issue-description').text(issue['issue-description']);
+            $('#issue-image').attr('src', issue['issue-image-link']);
+            $('#issue-video-link').attr('href', issue['issue-video-link']);
 
-            // Add class based on severity
+            // Update severity class only
+            $('#issue-severity').removeClass('error warning info');
             switch (issue['issue-severity']) {
                 case 'High':
                     $('#issue-severity').addClass('error');
@@ -212,12 +216,6 @@ $(document).ready(function() {
                     $('#issue-severity').addClass('info');
                     break;
             }
-
-            $('#issue-product-link').text(issue['issue-product']).attr('href', issue['issue-product-url']);
-            $('#issue-revenue').text(issue['issue-revenue']);
-            $('#issue-description').text(issue['issue-description']);
-            $('#issue-image').attr('src', issue['issue-image-link']);
-            $('#issue-video-link').attr('href', issue['issue-video-link']);
         } else {
             console.error("Issue not found: " + issueID);
         }
