@@ -170,7 +170,8 @@ $(document).ready(function() {
 });
 
 
-/////$(document).ready(function() {
+/////
+$(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
     // Load JSON data
