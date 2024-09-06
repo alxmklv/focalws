@@ -198,7 +198,21 @@ $(document).ready(function() {
         if (issue) {
             // Update sidebar content
             $('#issue-title').text(issue['issue-type']);
-            $('#issue-severity').text(issue['issue-severity']);
+            $('#issue-severity').text(issue['issue-severity']).removeClass('error warning info');
+
+            // Add class based on severity
+            switch (issue['issue-severity']) {
+                case 'High':
+                    $('#issue-severity').addClass('error');
+                    break;
+                case 'Medium':
+                    $('#issue-severity').addClass('warning');
+                    break;
+                case 'Low':
+                    $('#issue-severity').addClass('info');
+                    break;
+            }
+
             $('#issue-product-link').text(issue['issue-product']).attr('href', issue['issue-product-url']);
             $('#issue-revenue').text(issue['issue-revenue']);
             $('#issue-description').text(issue['issue-description']);
