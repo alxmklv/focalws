@@ -163,67 +163,74 @@ $(document).ready(function() {
 
 /////////////////////////////
 $(document).ready(function() {
-    // Function to open the modal
-    function openModal(modalId) {
-        $('#' + modalId).fadeIn(); // Fade in the modal
-    }
+   // Function to open the modal
+   function openModal(modalId) {
+     $('#' + modalId).fadeIn(); // Fade in the modal
+   }
 
-    // Function to close the modal
-    function closeModal(modalId) {
-        $('#' + modalId).fadeOut(); // Fade out the modal
-    }
+   // Function to close the modal
+   function closeModal(modalId) {
+     $('#' + modalId).fadeOut(); // Fade out the modal
+   }
 
-    // Function to load content into the main content area
-    function loadContent(src, type) {
-        var $mainContent = $('#mainContent');
-        if (type === 'video') {
-            $mainContent.html('<video controls><source src="' + src + '" type="video/mp4"></video>');
-        } else {
-            $mainContent.html('<img src="' + src + '" alt="Content">');
-        }
-    }
+   // Function to load content into the main content area
+   function loadContent(src, type) {
+     var $mainContent = $('#mainContent');
+     if (type === 'video') {
+       // Check if there's already a video element and replace it
+       var existingVideo = $mainContent.find('video');
+       if (existingVideo.length) {
+         existingVideo.find('source').attr('src', src);
+         existingVideo[0].load(); // Reload the video with new source
+       } else {
+         $mainContent.html('<video controls><source src="' + src + '" type="video/mp4"></video>');
+       }
+     } else {
+       $mainContent.html('<img src="' + src + '" alt="Content">');
+     }
+   }
 
-    // Event handler to handle clicks on elements with data-action attribute
-    $(document).on('click', '[data-action]', function() {
-        var action = $(this).data('action');
-        var modalId = $(this).data('modal-id');
+   // Event handler to handle clicks on elements with data-action attribute
+   $(document).on('click', '[data-action]', function() {
+     var action = $(this).data('action');
+     var modalId = $(this).data('modal-id');
 
-        if (action === 'open-modal') {
-            openModal(modalId);
-        } else if (action === 'close-modal') {
-            closeModal(modalId);
-        }
-    });
+     if (action === 'open-modal') {
+       openModal(modalId);
+     } else if (action === 'close-modal') {
+       closeModal(modalId);
+     }
+   });
 
-    // Event handler for preview clicks
-    $(document).on('click', '.preview-item', function() {
-        $('.preview-item').removeClass('active');
-        $(this).addClass('active');
-        var src = $(this).data('src');
-        var type = $(this).data('type');
-        loadContent(src, type);
-    });
+   // Event handler for preview clicks
+   $(document).on('click', '.preview-item', function() {
+     $('.preview-item').removeClass('active');
+     $(this).addClass('active');
+     var src = $(this).data('src');
+     var type = $(this).data('type');
+     loadContent(src, type);
+   });
 
-    // Close the modal if the user clicks outside of it
-    $(window).click(function(event) {
-        if ($(event.target).attr('id') === 'lightbox') {
-            closeModal('lightbox');
-        }
-    });
+   // Close the modal if the user clicks outside of it
+   $(window).click(function(event) {
+     if ($(event.target).attr('id') === 'lightbox') {
+       closeModal('lightbox');
+     }
+   });
 
-    // Close the modal if the Escape key is pressed
-    $(document).keydown(function(event) {
-        if (event.key === "Escape") {
-            closeModal('lightbox');
-        }
-    });
+   // Close the modal if the Escape key is pressed
+   $(document).keydown(function(event) {
+     if (event.key === "Escape") {
+       closeModal('lightbox');
+     }
+   });
 
-    // Load the initial content from the first preview
-    var $firstPreview = $('.preview-item').first();
-    if ($firstPreview.length) {
-        var initialSrc = $firstPreview.data('src');
-        var initialType = $firstPreview.data('type');
-        loadContent(initialSrc, initialType);
-        $firstPreview.addClass('active');
-    }
-});
+   // Load the initial content from the first preview
+   var $firstPreview = $('.preview-item').first();
+   if ($firstPreview.length) {
+     var initialSrc = $firstPreview.data('src');
+     var initialType = $firstPreview.data('type');
+     loadContent(initialSrc, initialType);
+     $firstPreview.addClass('active');
+   }
+ });
