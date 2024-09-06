@@ -162,6 +162,7 @@ $(document).ready(function() {
 
 
 /////////////////////////////
+
 $(document).ready(function() {
    // Function to open the modal
    function openModal(modalId) {
@@ -177,15 +178,22 @@ $(document).ready(function() {
    function loadContent(src, type) {
      var $mainContent = $('#mainContent');
      if (type === 'video') {
-       // Check if there's already a video element and replace it
-       var existingVideo = $mainContent.find('video');
-       if (existingVideo.length) {
-         existingVideo.find('source').attr('src', src);
-         existingVideo[0].load(); // Reload the video with new source
+       var $existingVideo = $mainContent.find('video');
+       if ($existingVideo.length) {
+         var $source = $existingVideo.find('source');
+         if ($source.length) {
+           $source.attr('src', src);
+         } else {
+           // No source element, add one
+           $existingVideo.html('<source src="' + src + '" type="video/mp4">');
+         }
+         $existingVideo[0].load(); // Reload the video with new source
        } else {
+         // No video element, create one
          $mainContent.html('<video controls><source src="' + src + '" type="video/mp4"></video>');
        }
      } else {
+       // Load image content
        $mainContent.html('<img src="' + src + '" alt="Content">');
      }
    }
