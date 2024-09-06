@@ -102,7 +102,66 @@ $(document).ready(function() {
             });
         });
 
-//////////////////////////////
+//
+
+////
+
+$(document).ready(function() {
+    var issueData = {}; // Object to hold JSON data
+
+    // Load JSON data
+    $.ajax({
+        url: 'https://alxmklv.github.io/focalws/issues.json',
+        dataType: 'json',
+        success: function(data) {
+            $.each(data, function(index, issue) {
+                issueData[issue.issueID] = issue;
+            });
+            console.log("JSON data successfully loaded.");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Failed to load JSON data:", textStatus, errorThrown);
+        }
+    });
+
+    // Update sidebar when an issue is clicked
+    $('#itemList').on('click', '.issues_table_row', function() {
+        var issueID = $(this).data('issue-id');
+        var issue = issueData[issueID]; // Get issue details by ID
+
+        if (issue) {
+            console.log("Updating issue:", issueID);
+            $('[data-target="issue-title"]').text(issue['issue-type']);
+            $('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+            $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
+            $('[data-target="issue-description"]').text(issue['issue-description']);
+
+            var imageElement = $('[data-target="issue-image"]');
+            imageElement.attr('src', '').attr('srcset', '').attr('src', issue['issue-image-link']);
+            $('[data-target="img-url"]').attr('data-src', issue['issue-image-link']);
+
+            $('[data-target="issue-video-link"]').attr('href', issue['issue-video-link']);
+            $('[data-target="video-url"]').attr('data-src', issue['issue-video-link']);
+
+            var severityElement = $('[data-target="issue-severity"]');
+            severityElement.removeClass('error warning info').addClass(function() {
+                switch (issue['issue-severity']) {
+                    case 'High': return 'error';
+                    case 'Medium': return 'warning';
+                    case 'Low': return 'info';
+                    default: return '';
+                }
+            });
+
+            $('[data-target="issue-inspect"]').attr('href', issue['issue-product-url']);
+        } else {
+            console.error("Issue not found:", issueID);
+        }
+    });
+});
+
+
+/////////////////////////////
 $(document).ready(function() {
     // Function to open the modal
     function openModal(modalId) {
@@ -167,61 +226,4 @@ $(document).ready(function() {
         loadContent(initialSrc, initialType);
         $firstPreview.addClass('active');
     }
-});
-
-
-////
-
-$(document).ready(function() {
-    var issueData = {}; // Object to hold JSON data
-
-    // Load JSON data
-    $.ajax({
-        url: 'https://alxmklv.github.io/focalws/issues.json',
-        dataType: 'json',
-        success: function(data) {
-            $.each(data, function(index, issue) {
-                issueData[issue.issueID] = issue;
-            });
-            console.log("JSON data successfully loaded.");
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error("Failed to load JSON data:", textStatus, errorThrown);
-        }
-    });
-
-    // Update sidebar when an issue is clicked
-    $('#itemList').on('click', '.issues_table_row', function() {
-        var issueID = $(this).data('issue-id');
-        var issue = issueData[issueID]; // Get issue details by ID
-
-        if (issue) {
-            console.log("Updating issue:", issueID);
-            $('[data-target="issue-title"]').text(issue['issue-type']);
-            $('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
-            $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
-            $('[data-target="issue-description"]').text(issue['issue-description']);
-
-            var imageElement = $('[data-target="issue-image"]');
-            imageElement.attr('src', '').attr('srcset', '').attr('src', issue['issue-image-link']);
-            $('[data-target="img-url"]').attr('data-src', issue['issue-image-link']);
-
-            $('[data-target="issue-video-link"]').attr('href', issue['issue-video-link']);
-            $('[data-target="video-url"]').attr('data-src', issue['issue-video-link']);
-
-            var severityElement = $('[data-target="issue-severity"]');
-            severityElement.removeClass('error warning info').addClass(function() {
-                switch (issue['issue-severity']) {
-                    case 'High': return 'error';
-                    case 'Medium': return 'warning';
-                    case 'Low': return 'info';
-                    default: return '';
-                }
-            });
-
-            $('[data-target="issue-inspect"]').attr('href', issue['issue-product-url']);
-        } else {
-            console.error("Issue not found:", issueID);
-        }
-    });
 });
