@@ -105,8 +105,6 @@ $(document).ready(function() {
 //
 
 ///
-
-
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -118,27 +116,11 @@ $(document).ready(function() {
             $.each(data, function(index, issue) {
                 issueData[issue.issueID] = issue;
             });
-            console.log("JSON data successfully loaded.");
-
-            // Load the initial content from the first preview only after JSON is loaded
-            loadInitialContentFromFirstPreview();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error("Failed to load JSON data:", textStatus, errorThrown);
         }
     });
-
-    // Function to load initial content from the first preview
-    function loadInitialContentFromFirstPreview() {
-        var $firstPreview = $('.preview-item').first();
-        if ($firstPreview.length) {
-            console.log('Loading initial content from the first preview.');
-            var initialSrc = $firstPreview.data('src');
-            var initialType = $firstPreview.data('type');
-            loadContent(initialSrc, initialType);
-            $firstPreview.addClass('active');
-        }
-    }
 
     // Update sidebar when an issue is clicked
     $('#itemList').on('click', '.issues_table_row', function() {
@@ -146,29 +128,24 @@ $(document).ready(function() {
         var issue = issueData[issueID]; // Get issue details by ID
 
         if (issue) {
-            console.log("Updating issue:", issueID);
+            // Update the sidebar content based on the selected issue
             $('[data-target="issue-title"]').text(issue['issue-type']);
             $('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
             $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
             $('[data-target="issue-description"]').text(issue['issue-description']);
 
-            // Clear and update issue image
-            var imageElement = $('[data-target="issue-image"]');
-            imageElement.attr('src', '').attr('srcset', '').attr('src', issue['issue-image-link']);
+            // Update issue image
+            $('[data-target="image"]').attr('src', issue['issue-image-link']);
             $('[data-target="img-url"]').attr('data-src', issue['issue-image-link']);
 
-            // Update video link directly
-            var videoElement = $('[data-target="issue-video-link"]');
-            videoElement.attr('href', issue['issue-video-link']);
+            // Update video URL
+            $('[data-target="video"]').attr('src', issue['issue-video-link']);
+            $('[data-target="video-url"]').attr('data-src', issue['issue-video-link']);
 
-            // Update data-src attribute for video URL
-            var videoUrlElement = $('[data-target="video-url"]');
-            videoUrlElement.attr('data-src', issue['issue-video-link']);
-
-            // Set data-src for #videoPreview
+            // Update video preview
             $('#videoPreview').attr('data-src', issue['issue-video-link']);
 
-            // Update severity class only
+            // Update severity class
             var severityElement = $('[data-target="issue-severity"]');
             severityElement.removeClass('error warning info').addClass(function() {
                 switch (issue['issue-severity']) {
@@ -185,77 +162,48 @@ $(document).ready(function() {
             console.error("Issue not found:", issueID);
         }
     });
+});
 
+
+////
+
+
+<script>
+  $(document).ready(function() {
     // Function to open the modal
     function openModal(modalId) {
-        console.log('Opening modal:', modalId);
-        $('#' + modalId).fadeIn(); // Fade in the modal
+      $('#' + modalId).fadeIn(); // Fade in the modal
     }
 
     // Function to close the modal
     function closeModal(modalId) {
-        console.log('Closing modal:', modalId);
-        $('#' + modalId).fadeOut(); // Fade out the modal
-    }
-
-    // Function to load content into the main content area
-    function loadContent(src, type) {
-        var $mainContent = $('#mainContent');
-        console.log('Loading content. Type:', type, 'Source:', src);
-
-        if (type === 'video') {
-            var $existingVideo = $mainContent.find('video');
-            if ($existingVideo.length) {
-                console.log('Found existing video element.');
-                // Set the src directly on the video tag
-                $existingVideo.attr('src', src);
-                $existingVideo[0].load(); // Reload the video with new source
-            } else {
-                console.log('No video element found. Creating new video element.');
-                // Create a new video element
-                $mainContent.html('<video controls src="' + src + '"></video>');
-            }
-        } else {
-            console.log('Loading image content.');
-            // Load image content
-            $mainContent.html('<img src="' + src + '" alt="Content">');
-        }
+      $('#' + modalId).fadeOut(); // Fade out the modal
     }
 
     // Event handler to handle clicks on elements with data-action attribute
     $(document).on('click', '[data-action]', function() {
-        var action = $(this).data('action');
-        var modalId = $(this).data('modal-id');
+      var action = $(this).data('action');
+      var modalId = $(this).data('modal-id');
 
-        if (action === 'open-modal') {
-            openModal(modalId);
-        } else if (action === 'close-modal') {
-            closeModal(modalId);
-        }
-    });
-
-    // Event handler for preview clicks
-    $(document).on('click', '.preview-item', function() {
-        console.log('Preview item clicked.');
-        $('.preview-item').removeClass('active');
-        $(this).addClass('active');
-        var src = $(this).data('src');
-        var type = $(this).data('type');
-        console.log('Preview data - Source:', src, 'Type:', type);
-        loadContent(src, type);
+      if (action === 'open-modal') {
+        openModal(modalId);
+      } else if (action === 'close-modal') {
+        closeModal(modalId);
+      }
     });
 
     // Close the modal if the user clicks outside of it
     $(window).click(function(event) {
-        if ($(event.target).attr('id') === 'lightbox') {
-            closeModal('lightbox');
-        }
+      if ($(event.target).attr('id') === 'lightbox') {
+        closeModal('lightbox');
+      }
     });
 
     // Close the modal if the Escape key is pressed
     $(document).keydown(function(event) {
-        if (event.key === "Escape") {
-            closeModal('lightbox');
-        }
+      if (event.key === "Escape") {
+        closeModal('lightbox');
+      }
     });
-});
+  });
+</script>
