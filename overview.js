@@ -168,7 +168,7 @@ $(document).ready(function() {
 ////
 
 
-<script>
+
   $(document).ready(function() {
     // Function to open the modal
     function openModal(modalId) {
@@ -206,4 +206,3 @@ $(document).ready(function() {
       }
     });
   });
-</script>
