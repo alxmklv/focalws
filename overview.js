@@ -201,7 +201,13 @@ $(document).ready(function() {
             $('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
             $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
             $('[data-target="issue-description"]').text(issue['issue-description']);
-            $('[data-target="issue-image"]').attr('src', issue['issue-image-link']);
+
+            // Clear and update issue image
+            var imageElement = $('[data-target="issue-image"]');
+            imageElement.attr('src', ''); // Clear current src
+            imageElement.attr('src', issue['issue-image-link']); // Set new src
+
+            // Update video link
             $('[data-target="issue-video-link"]').attr('href', issue['issue-video-link']);
 
             // Update severity class only
