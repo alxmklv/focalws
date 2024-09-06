@@ -219,7 +219,10 @@ $(document).ready(function() {
             $('[data-target="issue-video-link"]').attr('href', issue['issue-video-link']);
 
             // Update data-src attribute for video URL
-            $('[data-target="video-url"]').attr('data-src', issue['issue-video-link']);
+            var videoElement = $('[data-target="video-url"]');
+            console.log("Updating video URL:", issue['issue-video-link']); // Debugging line
+            videoElement.attr('data-src', issue['issue-video-link']);
+            console.log("Video URL updated:", videoElement.attr('data-src')); // Debugging line
 
             // Update severity class only
             var severityElement = $('[data-target="issue-severity"]');
