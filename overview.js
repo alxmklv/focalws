@@ -170,7 +170,7 @@ $(document).ready(function() {
 });
 
 
-/////
+////
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -196,30 +196,33 @@ $(document).ready(function() {
         var issue = issueData[issueID]; // Get issue details by ID
 
         if (issue) {
-            // Update sidebar content
-            $('#issue-title').text(issue['issue-type']);
-            $('#issue-product-link').text(issue['issue-product']).attr('href', issue['issue-product-url']);
-            $('#issue-revenue').text(issue['issue-revenue']);
-            $('#issue-description').text(issue['issue-description']);
-            $('#issue-image').attr('src', issue['issue-image-link']);
-            $('#issue-video-link').attr('href', issue['issue-video-link']);
+            // Update sidebar content using attributes
+            $('[data-target="issue-title"]').text(issue['issue-type']);
+            $('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+            $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
+            $('[data-target="issue-description"]').text(issue['issue-description']);
+            $('[data-target="issue-image"]').attr('src', issue['issue-image-link']);
+            $('[data-target="issue-video-link"]').attr('href', issue['issue-video-link']);
 
             // Update severity class only
-            $('#issue-severity').removeClass('error warning info');
+            var severityElement = $('[data-target="issue-severity"]');
+            severityElement.removeClass('error warning info');
             switch (issue['issue-severity']) {
                 case 'High':
-                    $('#issue-severity').addClass('error');
+                    severityElement.addClass('error');
                     break;
                 case 'Medium':
-                    $('#issue-severity').addClass('warning');
+                    severityElement.addClass('warning');
                     break;
                 case 'Low':
-                    $('#issue-severity').addClass('info');
+                    severityElement.addClass('info');
                     break;
+                default:
+                    console.error("Unknown severity level: " + issue['issue-severity']);
             }
 
             // Update issue inspect URL
-            $('#issue-inspect').attr('href', issue['issue-product-url']);
+            $('[data-target="issue-inspect"]').attr('href', issue['issue-product-url']);
         } else {
             console.error("Issue not found: " + issueID);
         }
