@@ -105,6 +105,7 @@ $(document).ready(function() {
 //
 
 ///
+
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -134,16 +135,18 @@ $(document).ready(function() {
             $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
             $('[data-target="issue-description"]').text(issue['issue-description']);
 
-            // Update issue image
+            // Update issue image and video
             $('[data-target="image"]').attr('src', issue['issue-image-link']);
-            $('[data-target="img-url"]').attr('data-src', issue['issue-image-link']);
-
-            // Update video URL
             $('[data-target="video"]').attr('src', issue['issue-video-link']);
-            $('[data-target="video-url"]').attr('data-src', issue['issue-video-link']);
 
-            // Update video preview
-            $('#videoPreview').attr('data-src', issue['issue-video-link']);
+            // Update issue fixes
+            $('[data-target="issue-fix-1h"]').text(issue['issue-fix-1h']);
+            $('[data-target="issue-fix-1c"]').text(issue['issue-fix-1c']);
+            $('[data-target="issue-fix-2h"]').text(issue['issue-fix-2h']);
+            $('[data-target="issue-fix-2c"]').text(issue['issue-fix-2c']);
+
+            // Update issue metadata time
+            $('[data-target="issue-meta-time"]').text(issue['issue-meta-time']);
 
             // Update severity class
             var severityElement = $('[data-target="issue-severity"]');
