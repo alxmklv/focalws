@@ -170,8 +170,7 @@ $(document).ready(function() {
 });
 
 
-////
-$(document).ready(function() {
+////$(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
     // Load JSON data
@@ -205,7 +204,10 @@ $(document).ready(function() {
             // Clear and update issue image
             var imageElement = $('[data-target="issue-image"]');
             imageElement.attr('src', ''); // Clear current src
+            imageElement.attr('srcset', ''); // Clear current srcset
             imageElement.attr('src', issue['issue-image-link']); // Set new src
+            // Optionally update srcset if needed
+            // imageElement.attr('srcset', issue['issue-image-link']); // Uncomment if srcset needs to be updated
 
             // Update video link
             $('[data-target="issue-video-link"]').attr('href', issue['issue-video-link']);
