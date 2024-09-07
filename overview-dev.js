@@ -115,25 +115,26 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 
 /// issueS
-$(document).ready(function() {
-    var issueData = {}; // Object to hold JSON data
 
-    // Load JSON data
+$(document).ready(function() {
+    var issueData = {};  // Object to hold JSON data for issues
+    var fixData = {};    // Object to hold JSON data for fixes
+
+    // Load issues JSON data
     $.ajax({
         url: 'https://alxmklv.github.io/focalws/issues.json',
         dataType: 'json',
         success: function(data) {
-            // Loop through each issue in the data
             $.each(data, function(index, issue) {
                 issueData[issue.issueID] = issue;
 
                 // Clone the template for each issue in the list
-                var $template = $('#issueTemplate').clone().removeAttr('id'); // Clone without the ID
-                $template.css('display', ''); // Make the cloned item visible
+                var $template = $('#issueTemplate').clone().removeAttr('id');
+                $template.css('display', '');  // Make the cloned item visible
 
                 // Update the cloned template with issue data for the list (using unique data-target names)
                 $template.find('[data-target-list="issue-title"]').text(issue['issue-type']);
-                $template.find('[data-target-list="issue-product"]').text(issue['issue-product']); // Add product name to list
+                $template.find('[data-target-list="issue-product"]').text(issue['issue-product']);
                 $template.find('[data-target-list="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
                 $template.find('[data-target-list="issue-revenue"]').text(issue['issue-revenue']);
 
@@ -156,19 +157,32 @@ $(document).ready(function() {
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.error("Failed to load JSON data:", textStatus, errorThrown);
+            console.error("Failed to load issues JSON data:", textStatus, errorThrown);
+        }
+    });
+
+    // Load fixes JSON data
+    $.ajax({
+        url: 'https://alxmklv.github.io/focalws/howto.json',
+        dataType: 'json',
+        success: function(data) {
+            fixData = data;  // Store the fixes data for later use
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Failed to load fixes JSON data:", textStatus, errorThrown);
         }
     });
 
     // Handle sidebar updates when an issue is clicked
     $('#itemList').on('click', '.issues_table_row', function() {
         var issueID = $(this).data('issue-id');
-        var issue = issueData[issueID]; // Get issue details by ID
+        var issue = issueData[issueID];  // Get issue details by ID
+        var fix = fixData[issueID];      // Get fix details by ID from fixes JSON
 
         if (issue) {
             // Update the sidebar content based on the selected issue
             $('[data-target="issue-title"]').text(issue['issue-type']);
-            $('[data-target="issue-product"]').text(issue['issue-product']); // Add product name to sidebar
+            $('[data-target="issue-product"]').text(issue['issue-product']);
             $('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
             $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
             $('[data-target="issue-description"]').text(issue['issue-description']);
@@ -177,11 +191,16 @@ $(document).ready(function() {
             $('[data-target="image"]').attr('src', issue['issue-image-link']);
             $('[data-target="video"]').attr('src', issue['issue-video-link']);
 
-            // Update issue fixes
-            $('[data-target="issue-fix-1h"]').text(issue['issue-fix-1h']);
-            $('[data-target="issue-fix-1c"]').text(issue['issue-fix-1c']);
-            $('[data-target="issue-fix-2h"]').text(issue['issue-fix-2h']);
-            $('[data-target="issue-fix-2c"]').text(issue['issue-fix-2c']);
+            // Update fixes from the fixes JSON
+            if (fix) {
+                $('[data-target="issue-fix-1h"]').text(fix['fix-1h']);
+                $('[data-target="issue-fix-1c"]').text(fix['fix-1c']);
+                $('[data-target="issue-fix-2h"]').text(fix['fix-2h']);
+                $('[data-target="issue-fix-2c"]').text(fix['fix-2c']);
+            } else {
+                // Clear the fixes fields if no fix data is available for the issue
+                $('[data-target="issue-fix-1h"], [data-target="issue-fix-1c"], [data-target="issue-fix-2h"], [data-target="issue-fix-2c"]').empty();
+            }
 
             // Update issue metadata time
             $('[data-target="issue-meta-time"]').text(issue['issue-meta-time']);
