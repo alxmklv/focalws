@@ -1,18 +1,30 @@
 {
-    "typeID1": [
-        {
-            "header": "Fix 1 Header",
-            "content": "Fix 1 Content"
-        },
-        {
-            "header": "Fix 2 Header",
-            "content": "Fix 2 Content"
-        }
-    ],
-    "typeID2": [
-        {
-            "header": "Another Fix Header",
-            "content": "Another Fix Content"
-        }
-    ]
+  "typeID1": [
+    {
+      "header": "Fix for Broken Product Page",
+      "content": "Update the product variant selector to correctly handle Black variant selection."
+    },
+    {
+      "header": "Redirect Issue",
+      "content": "Fix the redirection rule that leads to a broken page."
+    }
+  ],
+  "typeID2": [
+    {
+      "header": "Product Offline Error",
+      "content": "Investigate the error logs and restore the product page."
+    }
+  ],
+  "typeID3": [
+    {
+      "header": "Slow Loading Product Page",
+      "content": "Optimize the images on the product page to reduce load times."
+    }
+  ],
+  "typeID4": [
+    {
+      "header": "Broken Images or Missing Media",
+      "content": "Replace the broken header image on the Diamond Collection Page."
+    }
+  ]
 }
