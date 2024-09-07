@@ -115,7 +115,6 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 
 /// issueS
-
 $(document).ready(function() {
     var issueData = {};  // Object to hold JSON data for issues
     var fixData = {};    // Object to hold JSON data for fixes
@@ -196,13 +195,20 @@ $(document).ready(function() {
             $('[data-target="image"]').attr('src', issue['issue-image-link']);
             $('[data-target="video"]').attr('src', issue['issue-video-link']);
 
-            // Dynamically populate the fixes in the sidebar
+            // Dynamically populate the fixes in the sidebar using the existing HTML template
             var $fixContainer = $('[data-target="fixes-container"]');
             $fixContainer.empty();  // Clear previous fixes
             if (fix) {
-                $.each(fix, function(key, value) {
-                    var $fixItem = $('<div></div>').text(key + ': ' + value);
-                    $fixContainer.append($fixItem);  // Add new fix to the container
+                $.each(fix, function(index, fixObject) {
+                    // Clone the fix template
+                    var $fixTemplate = $('#fixTemplate').clone().removeAttr('id').css('display', '');
+
+                    // Populate the cloned template with the fix data
+                    $fixTemplate.find('[data-target="fix-header"]').text(fixObject.header);
+                    $fixTemplate.find('[data-target="fix-content"]').text(fixObject.content);
+
+                    // Append the populated fix template to the container
+                    $fixContainer.append($fixTemplate);
                 });
             } else {
                 $fixContainer.text("No fixes available");
@@ -229,7 +235,6 @@ $(document).ready(function() {
         }
     });
 });
-
 
 // cloning
 
