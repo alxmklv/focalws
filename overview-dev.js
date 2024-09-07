@@ -115,7 +115,6 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 
 /// issueS
-
 $(document).ready(function() {
     var issueData = {};  // Object to hold JSON data for issues
     var fixData = {};    // Object to hold JSON data for fixes
@@ -177,9 +176,11 @@ $(document).ready(function() {
     $('#itemList').on('click', '.issues_table_row', function() {
         var issueID = $(this).data('issue-id');
         var issue = issueData[issueID];  // Get issue details by ID
-        var fix = fixData[issueID];      // Get fix details by ID from fixes JSON
 
         if (issue) {
+            // Find fix data by matching typeID from issues.json with howto.json
+            var fix = fixData[issue['typeID']];
+
             // Update the sidebar content based on the selected issue
             $('[data-target="issue-title"]').text(issue['issue-type']);
             $('[data-target="issue-product"]').text(issue['issue-product']);
@@ -191,7 +192,7 @@ $(document).ready(function() {
             $('[data-target="image"]').attr('src', issue['issue-image-link']);
             $('[data-target="video"]').attr('src', issue['issue-video-link']);
 
-            // Update fixes from the fixes JSON
+            // Update fixes from the fixes JSON based on typeID
             if (fix) {
                 $('[data-target="issue-fix-1h"]').text(fix['fix-1h']);
                 $('[data-target="issue-fix-1c"]').text(fix['fix-1c']);
@@ -223,6 +224,7 @@ $(document).ready(function() {
         }
     });
 });
+
 
 
 // cloning
