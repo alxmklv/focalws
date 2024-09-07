@@ -1,66 +1,84 @@
 {
-    "Broken Product Page": [
-        {
-            "heading": "Check Server Status",
-            "description": "Verify if the server is down and check the server logs for any critical errors that might cause the page to break."
-        },
-        {
-            "heading": "Validate URL Routing",
-            "description": "Ensure that the URL routing is correctly configured to the product page. Check .htaccess and router settings."
-        },
-        {
-            "heading": "Update Product Links",
-            "description": "Review and update all product links in the content management system to ensure they are not broken."
-        }
-    ],
-    "Product Page Taken Offline by Error": [
-        {
-            "heading": "Audit CMS Entries",
-            "description": "Check the CMS for any incorrect settings or errors that could lead to the product page being taken offline."
-        },
-        {
-            "heading": "Restore from Backup",
-            "description": "If the page was taken offline by error, restore it from the most recent backup if available."
-        }
-    ],
-    "Slow Loading Product Page": [
-        {
-            "heading": "Optimize Images",
-            "description": "Reduce the file size of images without losing quality to enhance page loading speed."
-        },
-        {
-            "heading": "Minimize HTTP Requests",
-            "description": "Combine CSS and JavaScript files where possible to reduce the number of server requests."
-        }
-    ],
-    "Broken Images or Missing Media": [
-        {
-            "heading": "Check Image Paths",
-            "description": "Ensure all image paths are correct and the images are uploaded to the server."
-        },
-        {
-            "heading": "Enable Lazy Loading",
-            "description": "Implement lazy loading for images to improve page load times and handle missing images gracefully."
-        }
-    ],
-    "Broken Link": [
-        {
-            "heading": "Validate Hyperlinks",
-            "description": "Regularly check and validate all hyperlinks on the site to ensure they are not broken."
-        },
-        {
-            "heading": "Implement Redirects",
-            "description": "Set up server-side redirects for any links that have changed to maintain SEO and user experience."
-        }
-    ],
-    "Broken Links to Product Page": [
-        {
-            "heading": "Audit Product URLs",
-            "description": "Conduct a full audit of all product URLs to ensure they match the live URLs in the inventory system."
-        },
-        {
-            "heading": "Update Link Sources",
-            "description": "Update any outdated links in the marketing materials or on affiliate sites."
-        }
-    ]
+    "1": {
+        "name": "Broken Product Page",
+        "content": [
+            {
+                "heading": "Check Server Status",
+                "description": "Verify if the server is down and check the server logs for any critical errors that might cause the page to break."
+            },
+            {
+                "heading": "Validate URL Routing",
+                "description": "Ensure that the URL routing is correctly configured to the product page. Check .htaccess and router settings."
+            },
+            {
+                "heading": "Update Product Links",
+                "description": "Review and update all product links in the content management system to ensure they are not broken."
+            }
+        ]
+    },
+    "2": {
+        "name": "Product Page Taken Offline by Error",
+        "content": [
+            {
+                "heading": "Audit CMS Entries",
+                "description": "Check the CMS for any incorrect settings or errors that could lead to the product page being taken offline."
+            },
+            {
+                "heading": "Restore from Backup",
+                "description": "If the page was taken offline by error, restore it from the most recent backup if available."
+            }
+        ]
+    },
+    "3": {
+        "name": "Slow Loading Product Page",
+        "content": [
+            {
+                "heading": "Optimize Images",
+                "description": "Reduce the file size of images without losing quality to enhance page loading speed."
+            },
+            {
+                "heading": "Minimize HTTP Requests",
+                "description": "Combine CSS and JavaScript files where possible to reduce the number of server requests."
+            }
+        ]
+    },
+    "4": {
+        "name": "Broken Images or Missing Media",
+        "content": [
+            {
+                "heading": "Check Image Paths",
+                "description": "Ensure all image paths are correct and the images are uploaded to the server."
+            },
+            {
+                "heading": "Enable Lazy Loading",
+                "description": "Implement lazy loading for images to improve page load times and handle missing images gracefully."
+            }
+        ]
+    },
+    "5": {
+        "name": "Broken Link",
+        "content": [
+            {
+                "heading": "Validate Hyperlinks",
+                "description": "Regularly check and validate all hyperlinks on the site to ensure they are not broken."
+            },
+            {
+                "heading": "Implement Redirects",
+                "description": "Set up server-side redirects for any links that have changed to maintain SEO and user experience."
+            }
+        ]
+    },
+    "6": {
+        "name": "Broken Links to Product Page",
+        "content": [
+            {
+                "heading": "Audit Product URLs",
+                "description": "Conduct a full audit of all product URLs to ensure they match the live URLs in the inventory system."
+            },
+            {
+                "heading": "Update Link Sources",
+                "description": "Update any outdated links in the marketing materials or on affiliate sites."
+            }
+        ]
+    }
 }

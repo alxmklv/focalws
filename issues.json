@@ -1,6 +1,7 @@
 [
    {
       "issueID":"000001",
+      "typeID":"1",
       "issue-type":"Broken Product Page",
       "issue-severity":"High",
       "issue-product":"Diabolo Headband",
@@ -23,6 +24,7 @@
    },
    {
       "issueID":"000002",
+      "typeID":"2",
       "issue-type":"Product Page Taken Offline by Error",
       "issue-severity":"High",
       "issue-product":"Ballon Blanc Watch",
@@ -39,6 +41,7 @@
    },
    {
       "issueID":"000003",
+      "typeID":"2",
       "issue-type":"Product Page Taken Offline by Error",
       "issue-severity":"High",
       "issue-product":"Ballon Bleu Watch",
@@ -55,6 +58,7 @@
    },
    {
       "issueID":"000004",
+      "typeID":"3",
       "issue-type":"Slow Loading Product Page",
       "issue-severity":"Medium",
       "issue-product":"Love Necklace 3 Diamonds",
@@ -75,6 +79,7 @@
    },
    {
       "issueID":"000005",
+      "typeID":"4",
       "issue-type":"Broken Images or Missing Media",
       "issue-severity":"Medium",
       "issue-product":"Diamond Collection Page",
@@ -89,6 +94,7 @@
    },
    {
       "issueID":"000006",
+      "typeID":"5",
       "issue-type":"Broken Link",
       "issue-severity":"Medium",
       "issue-product":"L'Odyssée de Cartier on Main Brand Vision Page",
@@ -109,6 +115,7 @@
    },
    {
       "issueID":"000007",
+      "typeID":"6",
       "issue-type":"Broken Links to Product Page",
       "issue-severity":"High",
       "issue-product":"Baignoire Watch in Summer Gifts page",
@@ -125,6 +132,7 @@
    },
    {
       "issueID":"000008",
+      "typeID":"6",
       "issue-type":"Broken Links to Product Page",
       "issue-severity":"High",
       "issue-product":"Grain de Café earring on Main Grain de Café Collection Page",
@@ -141,6 +149,7 @@
    },
    {
       "issueID":"000009",
+      "typeID":"6",
       "issue-type":"Broken Links to Product Page",
       "issue-severity":"High",
       "issue-product":"Grain de Café Necklace on Main Grain de Café Collection Page",
@@ -157,6 +166,7 @@
    },
    {
       "issueID":"000010",
+      "typeID":"5",
       "issue-type":"Broken Link",
       "issue-severity":"Medium",
       "issue-product":"L'Odyssée de Cartier on Exceptional Stones Page",
@@ -177,6 +187,7 @@
    },
    {
       "issueID":"000011",
+      "typeID":"6",
       "issue-type":"Broken Links to Product Page",
       "issue-severity":"High",
       "issue-product":"Panthere De Cartier Watch on Panthere De Cartier",
@@ -193,6 +204,7 @@
    },
    {
       "issueID":"000012",
+      "typeID":"5",
       "issue-type":"Broken Link",
       "issue-severity":"Medium",
       "issue-product":"Savoir Faire & Transmission on High Jewelry Know How",
@@ -213,6 +225,7 @@
    },
    {
       "issueID":"000013",
+      "typeID":"3",
       "issue-type":"Slow Loading Product Page",
       "issue-severity":"Medium",
       "issue-product":"Les Necessaires A Parfum Cartier",
