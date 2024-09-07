@@ -293,23 +293,18 @@ $(document).ready(function() {
 
   ///Accordion
 
+  $(document).ready(function(){
+      $(".fix_accordion_header").click(function(){
+          console.log("Header clicked"); // Check if this triggers
+          var body = $(this).siblings(".fix_accordion_body");
+          var icon = $(this).find(".icon-m.w-embed");
 
-          $(document).ready(function(){
-              $(".fix_accordion_header").click(function(){
-                  var body = $(this).siblings(".fix_accordion_body");  // Target sibling
-                  var icon = $(this).find(".icon-m");  // Target the child icon
-
-                  body.slideToggle(300, function(){
-                      if(body.is(":visible")){
-                          body.css("display", "flex");  // Ensure display: flex when shown
-                      }
-                  });
-
-                  icon.toggleClass("rotated");  // Toggle the rotated class for the icon
-              });
+          body.slideToggle(300, function(){
+              if(body.is(":visible")){
+                  body.css("display", "flex");  // Ensure display: flex when shown
+              }
           });
 
-
-          $(".fix_accordion_header").click(function(){
-              console.log("Header clicked");  // Check if this logs to the console
-          });
+          icon.toggleClass("rotated");  // Toggle the rotated class for the icon
+      });
+  });
