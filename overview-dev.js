@@ -105,59 +105,51 @@ $(document).ready(function() {
 //
 
 /// issueS
+
 $(document).ready(function() {
     var issueData = {}; // Object to hold issue data
     var howToData = {}; // Object to hold how-to data
 
     // Load issue data
     $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
+        console.log("Data loaded:", data); // Debugging: Check what's being loaded
         issueData = data;
-        console.log("Issue data loaded successfully", issueData);
         populateIssues();
-    }).fail(function() {
-        console.error("Failed to load issue data.");
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("Failed to load issue data:", textStatus, errorThrown);
     });
 
     // Load how-to data
     $.getJSON('https://alxmklv.github.io/focalws/howto.json', function(data) {
         howToData = data;
-        console.log("How-to data loaded successfully", howToData);
-    }).fail(function() {
-        console.error("Failed to load how-to data.");
+        console.log("How-to data loaded:", data); // Debugging
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("Failed to load how-to data:", textStatus, errorThrown);
     });
 
     function populateIssues() {
         $('#itemList').empty(); // Clear existing entries
-        console.log("Populating issues...");
+        console.log("Populating issues...", issueData); // Debugging: Confirm data is correct
         $.each(issueData, function(index, issue) {
+            console.log("Processing issue:", issue); // Debugging: See each issue being processed
             var $template = $('#issueTemplate').clone().removeAttr('id').show();
             $template.find('[data-target-list="issue-title"]').text(issue['issue-type']);
             $template.find('[data-target-list="issue-product-link"]').attr('href', issue['issue-product-url']).text(issue['issue-product']);
             $template.find('[data-target-list="issue-revenue"]').text(issue['issue-revenue']);
-            console.log("Issue processed:", issue['issue-type']);
-
-            var severityElement = $template.find('[data-target-list="issue-severity"]');
-            severityElement.text(issue['issue-severity']);
-            severityElement.removeClass('error warning info').addClass(function() {
-                return getClassBySeverity(issue['issue-severity']);
-            });
-
             $template.data('issue-id', issue['issueID']);
             $('#itemList').append($template);
+            console.log("Issue appended:", issue['issueID']); // Debugging
         });
-        console.log("Issues populated.");
     }
 
     $('#itemList').on('click', '.issues_table_row', function() {
         var issueID = $(this).data('issue-id');
-        console.log("Issue selected:", issueID);
         var issue = issueData[issueID];
 
         if (issue) {
             updateSidebar(issue);
             updateHowToLists(issue['issue-type'], '#howToList');
             updateHowToLists(issue['issue-type'], '#secondHowToList');
-            console.log("Sidebar updated for:", issue['issue-type']);
         } else {
             console.error("Issue not found:", issueID);
         }
@@ -165,31 +157,39 @@ $(document).ready(function() {
 
     function updateSidebar(issue) {
         $('[data-target="issue-title"]').text(issue['issue-type']);
-        // Update other sidebar elements...
-        console.log("Sidebar content updated for:", issue['issue-type']);
+        $('[data-target="issue-product-link"]').attr('href', issue['issue-product-url']).text(issue['issue-product']);
+        $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
+        $('[data-target="issue-description"]').text(issue['issue-description']);
+        $('[data-target="image"]').attr('src', issue['issue-image-link']);
+        $('[data-target="video"]').attr('src', issue['issue-video-link']);
+        $('[data-target="issue-fix-1h"]').text(issue['issue-fix-1h']);
+        $('[data-target="issue-fix-1c"]').text(issue['issue-fix-1c']);
+        $('[data-target="issue-fix-2h"]').text(issue['issue-fix-2h']);
+        $('[data-target="issue-fix-2c"]').text(issue['issue-fix-2c']);
+        $('[data-target="issue-meta-time"]').text(issue['issue-meta-time']);
+        var severityElement = $('[data-target="issue-severity"]');
+        severityElement.removeClass('error warning info').addClass(function() {
+            switch (issue['issue-severity']) {
+                case 'High': return 'error';
+                case 'Medium': return 'warning';
+                case 'Low': return 'info';
+                default: return '';
+            }
+        });
+        $('[data-target="issue-inspect"]').attr('href', issue['issue-product-url']);
+        console.log("Sidebar updated for:", issue['issue-title']);
     }
 
     function updateHowToLists(issueType, containerSelector) {
-        console.log("Updating how-to lists for:", issueType);
         var steps = howToData[issueType] || [];
         var $list = $(containerSelector).empty();
-
         steps.forEach(function(step) {
             var $template = $('#howToTemplate').clone().removeAttr('id').css('display', '');
             $template.find('[data-target="how-to-heading"]').text(step.heading);
             $template.find('[data-target="how-to-description"]').text(step.description);
             $list.append($template);
+            console.log("Appended how-to step to", containerSelector, ":", step.heading);
         });
-        console.log("How-to list updated for container:", containerSelector);
-    }
-
-    function getClassBySeverity(severity) {
-        switch (severity) {
-            case 'High': return 'error';
-            case 'Medium': return 'warning';
-            case 'Low': return 'info';
-            default: return '';
-        }
     }
 });
 
