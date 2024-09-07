@@ -94,7 +94,7 @@
  div.preview-item[data-type="video"] > div.video-icon {display: block;}
 
 /*Issue Template*/
-/*#issueTemplate {display:none;}*/
+#issueTemplate {display:none;}
 #howToTemplate {display:none;}
 
 .has-selection {display:none;}

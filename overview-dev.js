@@ -181,6 +181,19 @@ $(document).ready(function() {
     }
 });
 
+
+// cloning
+
+$(document).ready(function() {
+    var $template = $('#issueTemplate').clone().removeAttr('id').show();
+    if ($template.length) {
+        console.log("Template cloned successfully");
+    } else {
+        console.error("Template cloning failed.");
+    }
+});
+
+
 //// Modal
 
 
