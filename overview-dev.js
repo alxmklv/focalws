@@ -115,14 +115,13 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 
 /// issueS
-
 $(document).ready(function() {
     var issueData = [];  // Holds the issue objects.
 
     // Load issue data from JSON
     $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
         console.log("Data loaded:", data);
-        issueData = data;
+        issueData = data;  // Assuming the JSON is a direct array of objects
         populateIssues();
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.error("Failed to load issue data:", textStatus, errorThrown);
@@ -130,41 +129,45 @@ $(document).ready(function() {
 
     // Function to populate the issue list
     function populateIssues() {
-        var $list = $('#itemList');
-        $list.empty();
+        var $list = $('#itemList');  // The container for the issue list
+        $list.empty();  // Clear the list before populating
         console.log("Populating issues...");
 
         $.each(issueData, function(index, issue) {
-            var $template = $('#issue-template').clone().removeAttr('id').show();
+            var $template = $('#issue-template').clone().removeAttr('id').show();  // Clone the issue template
 
+            // Check if the template was successfully cloned
             if (!$template.length) {
                 console.error("Template cloning failed.");
                 return;
             }
 
+            // Populate the template with issue data
             $template.find('[data-target-list="issue-title"]').text(issue['issue-type']);
             $template.find('[data-target-list="issue-product-link"]').attr('href', issue['issue-product-url']).text(issue['issue-product']);
             $template.find('[data-target-list="issue-revenue"]').text(issue['issue-revenue']);
-            $template.data('issue-id', issue['issueID']);  // Store issue ID for later use
+            $template.data('issue-id', issue['issueID']);  // Store the issue ID for later use
+
+            // Append the populated template to the list
             $list.append($template);
         });
 
         console.log("Issues populated:", $list.children().length);
     }
 
-    // Click event handler for issue list items
+    // Event handler for clicking on issue list items
     $('#itemList').on('click', '.issues_table_row', function() {
         var issueID = $(this).data('issue-id');
         var issue = issueData.find(issue => issue.issueID === issueID);
 
         if (issue) {
-            updateSidebar(issue);
+            updateSidebar(issue);  // Call function to update the sidebar with the clicked issue's data
         } else {
             console.error("Issue not found:", issueID);
         }
     });
 
-    // Update the sidebar with issue details
+    // Function to update the sidebar with issue details
     function updateSidebar(issue) {
         $('[data-target="issue-title"]').text(issue['issue-type']);
         $('[data-target="issue-product-link"]').attr('href', issue['issue-product-url']).text(issue['issue-product']);
