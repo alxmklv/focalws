@@ -105,6 +105,7 @@ $(document).ready(function() {
 //
 
 /// issueS
+
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -117,7 +118,7 @@ $(document).ready(function() {
             $.each(data, function(index, issue) {
                 issueData[issue.issueID] = issue;
 
-                // Clone the template for each issue
+                // Clone the template for each issue in the list
                 var $template = $('#issueTemplate').clone().removeAttr('id'); // Clone without the ID
                 $template.css('display', ''); // Make the cloned item visible
 
@@ -125,9 +126,6 @@ $(document).ready(function() {
                 $template.find('[data-target="issue-title"]').text(issue['issue-type']);
                 $template.find('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
                 $template.find('[data-target="issue-revenue"]').text(issue['issue-revenue']);
-
-                // Update the inspect link with the product URL
-                $template.find('[data-target="issue-inspect"]').attr('href', issue['issue-product-url']);
 
                 // Add the issue ID as a data attribute for future use
                 $template.attr('data-issue-id', issue['issueID']);
