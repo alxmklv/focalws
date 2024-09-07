@@ -105,7 +105,6 @@ $(document).ready(function() {
 //
 
 /// issueS
-
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
 
@@ -122,16 +121,16 @@ $(document).ready(function() {
                 var $template = $('#issueTemplate').clone().removeAttr('id'); // Clone without the ID
                 $template.css('display', ''); // Make the cloned item visible
 
-                // Update the cloned template with issue data
-                $template.find('[data-target="issue-title"]').text(issue['issue-type']);
-                $template.find('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
-                $template.find('[data-target="issue-revenue"]').text(issue['issue-revenue']);
+                // Update the cloned template with issue data for the list (using unique data-target names)
+                $template.find('[data-target-list="issue-title"]').text(issue['issue-type']);
+                $template.find('[data-target-list="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+                $template.find('[data-target-list="issue-revenue"]').text(issue['issue-revenue']);
 
                 // Add the issue ID as a data attribute for future use
                 $template.attr('data-issue-id', issue['issueID']);
 
                 // Update severity class for the issue in the list template
-                var severityElement = $template.find('[data-target="issue-severity"]');
+                var severityElement = $template.find('[data-target-list="issue-severity"]');
                 severityElement.removeClass('error warning info').addClass(function() {
                     switch (issue['issue-severity']) {
                         case 'High': return 'error';
