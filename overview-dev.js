@@ -104,6 +104,16 @@ $(document).ready(function() {
 
 //
 
+
+//Ajax textStatus
+
+$.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
+    console.log("Data loaded successfully:", data);
+}).fail(function(jqXHR, textStatus, errorThrown) {
+    console.error("Failed to load JSON data:", textStatus, errorThrown);
+});
+
+
 /// issueS
 $(document).ready(function() {
     var issueData = [];  // Holds the issue objects.
