@@ -105,45 +105,35 @@ $(document).ready(function() {
 //
 
 /// issueS
-
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
-    var $template = $('#issueTemplate').clone(); // Clone template for reuse
-    $template.removeAttr('id'); // Remove the ID to avoid duplicates
 
     // Load JSON data
     $.ajax({
         url: 'https://alxmklv.github.io/focalws/issues.json',
         dataType: 'json',
         success: function(data) {
-            $('#itemList').empty(); // Clear the list before populating
+            // Loop through each issue in the data
             $.each(data, function(index, issue) {
                 issueData[issue.issueID] = issue;
 
                 // Clone the template for each issue
-                var $issueElement = $template.clone();
+                var $template = $('#issueTemplate').clone().removeAttr('id'); // Clone without the ID
+                $template.css('display', ''); // Make the cloned item visible
 
                 // Update the cloned template with issue data
-                $issueElement.find('[data-target="issue-title"]').text(issue['issue-type']);
-                $issueElement.find('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
-                $issueElement.find('[data-target="issue-revenue"]').text(issue['issue-revenue']);
-                $issueElement.find('[data-target="issue-description"]').text(issue['issue-description']);
+                $template.find('[data-target="issue-title"]').text(issue['issue-type']);
+                $template.find('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+                $template.find('[data-target="issue-revenue"]').text(issue['issue-revenue']);
 
-                // Update image and video
-                $issueElement.find('[data-target="image"]').attr('src', issue['issue-image-link']);
-                $issueElement.find('[data-target="video"]').attr('src', issue['issue-video-link']);
+                // Update the inspect link with the product URL
+                $template.find('[data-target="issue-inspect"]').attr('href', issue['issue-product-url']);
 
-                // Update issue fixes
-                $issueElement.find('[data-target="issue-fix-1h"]').text(issue['issue-fix-1h']);
-                $issueElement.find('[data-target="issue-fix-1c"]').text(issue['issue-fix-1c']);
-                $issueElement.find('[data-target="issue-fix-2h"]').text(issue['issue-fix-2h']);
-                $issueElement.find('[data-target="issue-fix-2c"]').text(issue['issue-fix-2c']);
+                // Add the issue ID as a data attribute for future use
+                $template.attr('data-issue-id', issue['issueID']);
 
-                // Update issue metadata time
-                $issueElement.find('[data-target="issue-meta-time"]').text(issue['issue-meta-time']);
-
-                // Update severity class
-                var severityElement = $issueElement.find('[data-target="issue-severity"]');
+                // Update severity class for the issue in the list template
+                var severityElement = $template.find('[data-target="issue-severity"]');
                 severityElement.removeClass('error warning info').addClass(function() {
                     switch (issue['issue-severity']) {
                         case 'High': return 'error';
@@ -153,11 +143,8 @@ $(document).ready(function() {
                     }
                 });
 
-                // Add the issue ID as a data attribute for future use
-                $issueElement.attr('data-issue-id', issue['issueID']);
-
                 // Append the populated issue to the list
-                $('#itemList').append($issueElement);
+                $('#itemList').append($template);
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -190,7 +177,7 @@ $(document).ready(function() {
             // Update issue metadata time
             $('[data-target="issue-meta-time"]').text(issue['issue-meta-time']);
 
-            // Update severity class
+            // Update severity class in the sidebar
             var severityElement = $('[data-target="issue-severity"]');
             severityElement.removeClass('error warning info').addClass(function() {
                 switch (issue['issue-severity']) {
