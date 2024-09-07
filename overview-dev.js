@@ -123,6 +123,7 @@ $(document).ready(function() {
 
                 // Update the cloned template with issue data for the list (using unique data-target names)
                 $template.find('[data-target-list="issue-title"]').text(issue['issue-type']);
+                $template.find('[data-target-list="issue-product"]').text(issue['issue-product']); // Add product name to list
                 $template.find('[data-target-list="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
                 $template.find('[data-target-list="issue-revenue"]').text(issue['issue-revenue']);
 
@@ -157,6 +158,7 @@ $(document).ready(function() {
         if (issue) {
             // Update the sidebar content based on the selected issue
             $('[data-target="issue-title"]').text(issue['issue-type']);
+            $('[data-target="issue-product"]').text(issue['issue-product']); // Add product name to sidebar
             $('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
             $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
             $('[data-target="issue-description"]').text(issue['issue-description']);
