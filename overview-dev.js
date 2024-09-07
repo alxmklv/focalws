@@ -115,9 +115,9 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 
 /// issueS
+
 $(document).ready(function() {
     var issueData = [];  // Holds the issue objects.
-    var howToData = {};  // This could hold related how-to data if you need to load it.
 
     // Load issue data from JSON
     $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
@@ -135,7 +135,7 @@ $(document).ready(function() {
         console.log("Populating issues...");
 
         $.each(issueData, function(index, issue) {
-            var $template = $('#issueTemplate').clone().removeAttr('id').show();
+            var $template = $('#issue-template').clone().removeAttr('id').show();
 
             if (!$template.length) {
                 console.error("Template cloning failed.");
@@ -172,22 +172,6 @@ $(document).ready(function() {
         $('[data-target="issue-description"]').text(issue['issue-description']);
         $('[data-target="image"]').attr('src', issue['issue-image-link']);
         $('[data-target="video"]').attr('src', issue['issue-video-link']);
-
-        // Example of setting how-to data if you have that data structure
-        // updateHowToLists(issue['issue-type'], '#howToList');
-    }
-
-    // Optionally, function to update how-to steps (assuming how-to data is structured and loaded similarly)
-    function updateHowToLists(issueType, containerSelector) {
-        var steps = howToData[issueType] || [];
-        var $list = $(containerSelector).empty();
-
-        steps.forEach(function(step) {
-            var $template = $('#howToTemplate').clone().removeAttr('id').css('display', '');
-            $template.find('[data-target="how-to-heading"]').text(step.heading);
-            $template.find('[data-target="how-to-description"]').text(step.description);
-            $list.append($template);
-        });
     }
 });
 
