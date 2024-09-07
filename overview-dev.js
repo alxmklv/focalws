@@ -104,18 +104,60 @@ $(document).ready(function() {
 
 //
 
-///
+/// issueS
 
 $(document).ready(function() {
     var issueData = {}; // Object to hold JSON data
+    var $template = $('#issueTemplate').clone(); // Clone template for reuse
+    $template.removeAttr('id'); // Remove the ID to avoid duplicates
 
     // Load JSON data
     $.ajax({
         url: 'https://alxmklv.github.io/focalws/issues.json',
         dataType: 'json',
         success: function(data) {
+            $('#itemList').empty(); // Clear the list before populating
             $.each(data, function(index, issue) {
                 issueData[issue.issueID] = issue;
+
+                // Clone the template for each issue
+                var $issueElement = $template.clone();
+
+                // Update the cloned template with issue data
+                $issueElement.find('[data-target="issue-title"]').text(issue['issue-type']);
+                $issueElement.find('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+                $issueElement.find('[data-target="issue-revenue"]').text(issue['issue-revenue']);
+                $issueElement.find('[data-target="issue-description"]').text(issue['issue-description']);
+
+                // Update image and video
+                $issueElement.find('[data-target="image"]').attr('src', issue['issue-image-link']);
+                $issueElement.find('[data-target="video"]').attr('src', issue['issue-video-link']);
+
+                // Update issue fixes
+                $issueElement.find('[data-target="issue-fix-1h"]').text(issue['issue-fix-1h']);
+                $issueElement.find('[data-target="issue-fix-1c"]').text(issue['issue-fix-1c']);
+                $issueElement.find('[data-target="issue-fix-2h"]').text(issue['issue-fix-2h']);
+                $issueElement.find('[data-target="issue-fix-2c"]').text(issue['issue-fix-2c']);
+
+                // Update issue metadata time
+                $issueElement.find('[data-target="issue-meta-time"]').text(issue['issue-meta-time']);
+
+                // Update severity class
+                var severityElement = $issueElement.find('[data-target="issue-severity"]');
+                severityElement.removeClass('error warning info').addClass(function() {
+                    switch (issue['issue-severity']) {
+                        case 'High': return 'error';
+                        case 'Medium': return 'warning';
+                        case 'Low': return 'info';
+                        default: return '';
+                    }
+                });
+
+                // Add the issue ID as a data attribute for future use
+                $issueElement.attr('data-issue-id', issue['issueID']);
+
+                // Append the populated issue to the list
+                $('#itemList').append($issueElement);
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -123,7 +165,7 @@ $(document).ready(function() {
         }
     });
 
-    // Update sidebar when an issue is clicked
+    // Handle sidebar updates when an issue is clicked
     $('#itemList').on('click', '.issues_table_row', function() {
         var issueID = $(this).data('issue-id');
         var issue = issueData[issueID]; // Get issue details by ID
@@ -168,7 +210,8 @@ $(document).ready(function() {
 });
 
 
-////
+
+//// Modal
 
 
 
