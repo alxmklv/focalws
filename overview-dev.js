@@ -196,23 +196,31 @@ $(document).ready(function() {
             $('[data-target="image"]').attr('src', issue['issue-image-link']);
             $('[data-target="video"]').attr('src', issue['issue-video-link']);
 
-            // Dynamically populate the fixes in the sidebar using the existing HTML template
-            var $fixContainer = $('[data-target="fixes-container"]');
-            $fixContainer.empty();  // Clear previous fixes
+            // Dynamically populate the fixes in both containers using the existing HTML template
+            var $firstFixContainer = $('#firstFixesContainer');
+            var $secondFixContainer = $('#secondFixesContainer');
+
+            // Clear previous fixes
+            $firstFixContainer.empty();
+            $secondFixContainer.empty();
+
             if (fix) {
                 $.each(fix, function(index, fixObject) {
-                    // Clone the fix template
-                    var $fixTemplate = $('#fixTemplate').clone().removeAttr('id').css('display', 'block');
+                    // Clone the fix template for the first container
+                    var $fixTemplate1 = $('#fixTemplate').clone().removeAttr('id').css('display', 'block');
+                    $fixTemplate1.find('[data-target="fix-header"]').text(fixObject.header);
+                    $fixTemplate1.find('[data-target="fix-content"]').text(fixObject.content);
+                    $firstFixContainer.append($fixTemplate1);
 
-                    // Populate the cloned template with the fix data
-                    $fixTemplate.find('[data-target="fix-header"]').text(fixObject.header);
-                    $fixTemplate.find('[data-target="fix-content"]').text(fixObject.content);
-
-                    // Append the populated fix template to the container
-                    $fixContainer.append($fixTemplate);
+                    // Clone the fix template for the second container
+                    var $fixTemplate2 = $('#fixTemplate').clone().removeAttr('id').css('display', 'block');
+                    $fixTemplate2.find('[data-target="fix-header"]').text(fixObject.header);
+                    $fixTemplate2.find('[data-target="fix-content"]').text(fixObject.content);
+                    $secondFixContainer.append($fixTemplate2);
                 });
             } else {
-                $fixContainer.text("No fixes available");
+                $firstFixContainer.text("No fixes available");
+                $secondFixContainer.text("No fixes available");
             }
 
             // Update issue metadata time
@@ -236,7 +244,6 @@ $(document).ready(function() {
         }
     });
 });
-
 
 // cloning
 
