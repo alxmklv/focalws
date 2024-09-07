@@ -116,7 +116,6 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 /// issueS
 
-
 $(document).ready(function() {
     var issueData = {};  // Object to hold JSON data for issues
     var fixData = {};    // Object to hold JSON data for fixes
@@ -182,6 +181,9 @@ $(document).ready(function() {
         if (issue) {
             // Find fix data by matching typeID from issues.json with howto.json
             var fix = fixData[issue['typeID']];
+
+            // Log the fixes to the console to verify if they are loaded correctly
+            console.log("Fixes for issue:", issue['issue-product'], fix);
 
             // Update the sidebar content based on the selected issue
             $('[data-target="issue-title"]').text(issue['issue-type']);
