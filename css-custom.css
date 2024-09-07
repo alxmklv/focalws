@@ -92,3 +92,6 @@
 
 
  div.preview-item[data-type="video"] > div.video-icon {display: block;}
+
+/*Issue Template*/
+#issueTemplate {display:none;}
