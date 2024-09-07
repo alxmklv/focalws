@@ -292,19 +292,17 @@ $(document).ready(function() {
 
 
   ///Accordion
-
   $(document).ready(function(){
-      $(".fix_accordion_header").click(function(){
-          console.log("Header clicked"); // Check if this triggers
-          var body = $(this).siblings(".fix_accordion_body");
-          var icon = $(this).find(".icon-m.w-embed");
+         $(".fix_accordion").click(function(){
+             var body = $(this).find(".fix_accordion_body");  // Find the body inside the parent
+             var icon = $(this).find(".icon-m.w-embed");      // Find the icon inside the parent
 
-          body.slideToggle(300, function(){
-              if(body.is(":visible")){
-                  body.css("display", "flex");  // Ensure display: flex when shown
-              }
-          });
+             body.slideToggle(300, function(){
+                 if(body.is(":visible")){
+                     body.css("display", "flex");  // Ensure display: flex when shown
+                 }
+             });
 
-          icon.toggleClass("rotated");  // Toggle the rotated class for the icon
-      });
-  });
+             icon.toggleClass("rotated");  // Toggle the rotated class for the icon
+         });
+     });
