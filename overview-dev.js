@@ -115,6 +115,8 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 
 /// issueS
+
+
 $(document).ready(function() {
     var issueData = {};  // Object to hold JSON data for issues
     var fixData = {};    // Object to hold JSON data for fixes
@@ -192,15 +194,16 @@ $(document).ready(function() {
             $('[data-target="image"]').attr('src', issue['issue-image-link']);
             $('[data-target="video"]').attr('src', issue['issue-video-link']);
 
-            // Update fixes from the fixes JSON based on typeID
+            // Dynamically populate the fixes in the sidebar
+            var $fixContainer = $('[data-target="fixes-container"]');
+            $fixContainer.empty();  // Clear previous fixes
             if (fix) {
-                $('[data-target="issue-fix-1h"]').text(fix['fix-1h']);
-                $('[data-target="issue-fix-1c"]').text(fix['fix-1c']);
-                $('[data-target="issue-fix-2h"]').text(fix['fix-2h']);
-                $('[data-target="issue-fix-2c"]').text(fix['fix-2c']);
+                $.each(fix, function(key, value) {
+                    var $fixItem = $('<div></div>').text(key + ': ' + value);
+                    $fixContainer.append($fixItem);  // Add new fix to the container
+                });
             } else {
-                // Clear the fixes fields if no fix data is available for the issue
-                $('[data-target="issue-fix-1h"], [data-target="issue-fix-1c"], [data-target="issue-fix-2h"], [data-target="issue-fix-2c"]').empty();
+                $fixContainer.text("No fixes available");
             }
 
             // Update issue metadata time
@@ -224,7 +227,6 @@ $(document).ready(function() {
         }
     });
 });
-
 
 
 // cloning
