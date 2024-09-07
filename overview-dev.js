@@ -115,6 +115,7 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 
 /// issueS
+
 $(document).ready(function() {
     var issueData = {};  // Object to hold JSON data for issues
     var fixData = {};    // Object to hold JSON data for fixes
@@ -201,7 +202,7 @@ $(document).ready(function() {
             if (fix) {
                 $.each(fix, function(index, fixObject) {
                     // Clone the fix template
-                    var $fixTemplate = $('#fixTemplate').clone().removeAttr('id').css('display', '');
+                    var $fixTemplate = $('#fixTemplate').clone().removeAttr('id').css('display', 'block');
 
                     // Populate the cloned template with the fix data
                     $fixTemplate.find('[data-target="fix-header"]').text(fixObject.header);
@@ -235,6 +236,7 @@ $(document).ready(function() {
         }
     });
 });
+
 
 // cloning
 
