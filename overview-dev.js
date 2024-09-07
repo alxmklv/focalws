@@ -293,17 +293,18 @@ $(document).ready(function() {
 
   ///Accordion
 
-  $(document).ready(function(){
-    $(".fix_accordion_header").click(function(){
-        var body = $(this).siblings(".fix_accordion_body");
-        var icon = $(this).find(".icon-m");
 
-        body.slideToggle(300, function(){
-            if(body.is(":visible")){
-                body.css("display", "flex");  // Ensure flex display when shown
-            }
-        });
+          $(document).ready(function(){
+              $(".fix_accordion_header").click(function(){
+                  var body = $(this).siblings(".fix_accordion_body");  // Target sibling
+                  var icon = $(this).find(".icon-m");  // Target the child icon
 
-        icon.toggleClass("rotated");  // Toggle the rotated class for the icon
-    });
-});
+                  body.slideToggle(300, function(){
+                      if(body.is(":visible")){
+                          body.css("display", "flex");  // Ensure display: flex when shown
+                      }
+                  });
+
+                  icon.toggleClass("rotated");  // Toggle the rotated class for the icon
+              });
+          });
