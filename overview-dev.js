@@ -116,66 +116,93 @@ $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
 
 /// issueS
 $(document).ready(function() {
-    var issueData = [];  // Holds the issue objects.
+    var issueData = {}; // Object to hold JSON data
 
-    // Load issue data from JSON
-    $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
-        console.log("Data loaded:", data);
-        issueData = data;  // Assuming the JSON is a direct array of objects
-        populateIssues();
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("Failed to load issue data:", textStatus, errorThrown);
+    // Load JSON data
+    $.ajax({
+        url: 'https://alxmklv.github.io/focalws/issues.json',
+        dataType: 'json',
+        success: function(data) {
+            // Loop through each issue in the data
+            $.each(data, function(index, issue) {
+                issueData[issue.issueID] = issue;
+
+                // Clone the template for each issue in the list
+                var $template = $('#issueTemplate').clone().removeAttr('id'); // Clone without the ID
+                $template.css('display', ''); // Make the cloned item visible
+
+                // Update the cloned template with issue data for the list (using unique data-target names)
+                $template.find('[data-target-list="issue-title"]').text(issue['issue-type']);
+                $template.find('[data-target-list="issue-product"]').text(issue['issue-product']); // Add product name to list
+                $template.find('[data-target-list="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+                $template.find('[data-target-list="issue-revenue"]').text(issue['issue-revenue']);
+
+                // Add the issue ID as a data attribute for future use
+                $template.attr('data-issue-id', issue['issueID']);
+
+                // Update severity class for the issue in the list template
+                var severityElement = $template.find('[data-target-list="issue-severity"]');
+                severityElement.removeClass('error warning info').addClass(function() {
+                    switch (issue['issue-severity']) {
+                        case 'High': return 'error';
+                        case 'Medium': return 'warning';
+                        case 'Low': return 'info';
+                        default: return '';
+                    }
+                });
+
+                // Append the populated issue to the list
+                $('#itemList').append($template);
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Failed to load JSON data:", textStatus, errorThrown);
+        }
     });
 
-    // Function to populate the issue list
-    function populateIssues() {
-        var $list = $('#itemList');  // The container for the issue list
-        $list.empty();  // Clear the list before populating
-        console.log("Populating issues...");
-
-        $.each(issueData, function(index, issue) {
-            var $template = $('#issue-template').clone().removeAttr('id').show();  // Clone the issue template
-
-            // Check if the template was successfully cloned
-            if (!$template.length) {
-                console.error("Template cloning failed.");
-                return;
-            }
-
-            // Populate the template with issue data
-            $template.find('[data-target-list="issue-title"]').text(issue['issue-type']);
-            $template.find('[data-target-list="issue-product-link"]').attr('href', issue['issue-product-url']).text(issue['issue-product']);
-            $template.find('[data-target-list="issue-revenue"]').text(issue['issue-revenue']);
-            $template.data('issue-id', issue['issueID']);  // Store the issue ID for later use
-
-            // Append the populated template to the list
-            $list.append($template);
-        });
-
-        console.log("Issues populated:", $list.children().length);
-    }
-
-    // Event handler for clicking on issue list items
+    // Handle sidebar updates when an issue is clicked
     $('#itemList').on('click', '.issues_table_row', function() {
         var issueID = $(this).data('issue-id');
-        var issue = issueData.find(issue => issue.issueID === issueID);
+        var issue = issueData[issueID]; // Get issue details by ID
 
         if (issue) {
-            updateSidebar(issue);  // Call function to update the sidebar with the clicked issue's data
+            // Update the sidebar content based on the selected issue
+            $('[data-target="issue-title"]').text(issue['issue-type']);
+            $('[data-target="issue-product"]').text(issue['issue-product']); // Add product name to sidebar
+            $('[data-target="issue-product-link"]').text(issue['issue-product']).attr('href', issue['issue-product-url']);
+            $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
+            $('[data-target="issue-description"]').text(issue['issue-description']);
+
+            // Update issue image and video
+            $('[data-target="image"]').attr('src', issue['issue-image-link']);
+            $('[data-target="video"]').attr('src', issue['issue-video-link']);
+
+            // Update issue fixes
+            $('[data-target="issue-fix-1h"]').text(issue['issue-fix-1h']);
+            $('[data-target="issue-fix-1c"]').text(issue['issue-fix-1c']);
+            $('[data-target="issue-fix-2h"]').text(issue['issue-fix-2h']);
+            $('[data-target="issue-fix-2c"]').text(issue['issue-fix-2c']);
+
+            // Update issue metadata time
+            $('[data-target="issue-meta-time"]').text(issue['issue-meta-time']);
+
+            // Update severity class in the sidebar
+            var severityElement = $('[data-target="issue-severity"]');
+            severityElement.removeClass('error warning info').addClass(function() {
+                switch (issue['issue-severity']) {
+                    case 'High': return 'error';
+                    case 'Medium': return 'warning';
+                    case 'Low': return 'info';
+                    default: return '';
+                }
+            });
+
+            // Update issue inspect URL
+            $('[data-target="issue-inspect"]').attr('href', issue['issue-product-url']);
         } else {
             console.error("Issue not found:", issueID);
         }
     });
-
-    // Function to update the sidebar with issue details
-    function updateSidebar(issue) {
-        $('[data-target="issue-title"]').text(issue['issue-type']);
-        $('[data-target="issue-product-link"]').attr('href', issue['issue-product-url']).text(issue['issue-product']);
-        $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
-        $('[data-target="issue-description"]').text(issue['issue-description']);
-        $('[data-target="image"]').attr('src', issue['issue-image-link']);
-        $('[data-target="video"]').attr('src', issue['issue-video-link']);
-    }
 });
 
 
