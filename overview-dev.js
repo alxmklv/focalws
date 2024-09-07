@@ -308,3 +308,8 @@ $(document).ready(function() {
                   icon.toggleClass("rotated");  // Toggle the rotated class for the icon
               });
           });
+
+
+          $(".fix_accordion_header").click(function(){
+              console.log("Header clicked");  // Check if this logs to the console
+          });
