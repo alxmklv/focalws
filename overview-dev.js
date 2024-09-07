@@ -105,71 +105,70 @@ $(document).ready(function() {
 //
 
 /// issueS
-
 $(document).ready(function() {
-    var issueData = []; // Array to hold issue data
-    var howToData = {}; // Object to hold how-to data
+    var issueData = [];  // Holds the issue objects.
+    var howToData = {};  // This could hold related how-to data if you need to load it.
 
-    // Check if jQuery is loaded
-    console.log("jQuery version:", $ ? $.fn.jquery : "jQuery is not loaded.");
-
-    // Load issue data
+    // Load issue data from JSON
     $.getJSON('https://alxmklv.github.io/focalws/issues.json', function(data) {
-        issueData = data; // Assuming data is an array
-        console.log("Issue data loaded successfully:", data);
+        console.log("Data loaded:", data);
+        issueData = data;
         populateIssues();
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.error("Failed to load issue data:", textStatus, errorThrown);
     });
 
-    // Load how-to data
-    $.getJSON('https://alxmklv.github.io/focalws/howto.json', function(data) {
-        howToData = data;
-        console.log("How-to data loaded successfully:", data);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("Failed to load how-to data:", textStatus, errorThrown);
-    });
-
+    // Function to populate the issue list
     function populateIssues() {
         var $list = $('#itemList');
-        $list.empty(); // Clear existing entries
+        $list.empty();
         console.log("Populating issues...");
 
         $.each(issueData, function(index, issue) {
             var $template = $('#issueTemplate').clone().removeAttr('id').show();
-            $template.find('[data-target-list="issue-title"]').text(issue.issue_type);
-            $template.find('[data-target-list="issue-product-link"]').attr('href', issue.issue_product_url).text(issue.issue_product);
-            $template.find('[data-target-list="issue-revenue"]').text(issue.issue_revenue);
-            $template.data('issue-id', issue.issueID); // Ensure data is correctly attached
+
+            if (!$template.length) {
+                console.error("Template cloning failed.");
+                return;
+            }
+
+            $template.find('[data-target-list="issue-title"]').text(issue['issue-type']);
+            $template.find('[data-target-list="issue-product-link"]').attr('href', issue['issue-product-url']).text(issue['issue-product']);
+            $template.find('[data-target-list="issue-revenue"]').text(issue['issue-revenue']);
+            $template.data('issue-id', issue['issueID']);  // Store issue ID for later use
             $list.append($template);
         });
 
         console.log("Issues populated:", $list.children().length);
     }
 
+    // Click event handler for issue list items
     $('#itemList').on('click', '.issues_table_row', function() {
         var issueID = $(this).data('issue-id');
-        console.log("Issue selected with ID:", issueID);
         var issue = issueData.find(issue => issue.issueID === issueID);
 
         if (issue) {
-            console.log("Issue found:", issue);
             updateSidebar(issue);
-            updateHowToLists(issue.issue_type, '#howToList');
-            updateHowToLists(issue.issue_type, '#secondHowToList');
         } else {
-            console.error("Issue not found in data:", issueID);
+            console.error("Issue not found:", issueID);
         }
     });
 
+    // Update the sidebar with issue details
     function updateSidebar(issue) {
-        $('[data-target="issue-title"]').text(issue.issue_type);
-        // Update other sidebar elements as necessary
-        console.log("Sidebar updated for:", issue.issue_type);
+        $('[data-target="issue-title"]').text(issue['issue-type']);
+        $('[data-target="issue-product-link"]').attr('href', issue['issue-product-url']).text(issue['issue-product']);
+        $('[data-target="issue-revenue"]').text(issue['issue-revenue']);
+        $('[data-target="issue-description"]').text(issue['issue-description']);
+        $('[data-target="image"]').attr('src', issue['issue-image-link']);
+        $('[data-target="video"]').attr('src', issue['issue-video-link']);
+
+        // Example of setting how-to data if you have that data structure
+        // updateHowToLists(issue['issue-type'], '#howToList');
     }
 
+    // Optionally, function to update how-to steps (assuming how-to data is structured and loaded similarly)
     function updateHowToLists(issueType, containerSelector) {
-        console.log("Updating how-to lists for:", issueType);
         var steps = howToData[issueType] || [];
         var $list = $(containerSelector).empty();
 
@@ -179,12 +178,8 @@ $(document).ready(function() {
             $template.find('[data-target="how-to-description"]').text(step.description);
             $list.append($template);
         });
-
-        console.log("How-to list updated for:", containerSelector, "Steps:", steps.length);
     }
 });
-
-
 
 //// Modal
 
