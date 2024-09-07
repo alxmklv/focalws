@@ -1,0 +1,22 @@
+{
+    "Broken Product Page": [
+        {
+            "heading": "Identify Broken Links",
+            "description": "Check all links on the product page to identify any broken ones."
+        },
+        {
+            "heading": "Backend Integration Check",
+            "description": "Verify backend services are properly integrated and functional."
+        }
+    ],
+    "Slow Loading Product Page": [
+        {
+            "heading": "Check Server Response",
+            "description": "Analyze server response times to identify delays."
+        },
+        {
+            "heading": "Optimize Resources",
+            "description": "Reduce image sizes and optimize loading sequences."
+        }
+    ]
+}
