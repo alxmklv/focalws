@@ -10,16 +10,6 @@
       "issue-description":"From the Diabolo Headband PDP, clicking on the Black variant redirects the user to a broken page",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Diabolo+Headband.mov",
-      "issue-fix-1h":"Server Error",
-      "issue-fix-1c":"The page might be down due to a server issue. Check the server status and logs to identify and resolve any errors.",
-      "issue-fix-2h":"Missing or Corrupt Files",
-      "issue-fix-2c":"Essential files like HTML, CSS, or JavaScript may be missing or corrupted. Verify the file integrity and restore any missing or damaged files.",
-      "issue-fix-3h":"Incorrect URL Routing",
-      "issue-fix-3c":"The page might not load due to incorrect routing or URL mapping. Review the routing configuration and ensure the URL points to the correct page.",
-      "issue-fix-4h":"Script or Plugin Conflicts",
-      "issue-fix-4c":"Conflicts between scripts or plugins could be causing the page to break. Disable or update conflicting plugins or scripts to resolve the issue.",
-      "issue-fix-5h":"Browser Compatibility Issues",
-      "issue-fix-5c":"The page might not render correctly in certain browsers. Test the page across different browsers and fix any compatibility issues.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -33,10 +23,6 @@
       "issue-description":"From the Ballon De Cartier page, clicking on the ballon blanc recommended products redirect to a missing page",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2742b573d107a32a50d_ballon_blanc.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Ballon+Blanc.mov",
-      "issue-fix-1h":"Outdated link to product page",
-      "issue-fix-1c":"Check in your CMS to see if the broken link here is the latest link to that product page.",
-      "issue-fix-2h":"Missing inventory ",
-      "issue-fix-2c":"Connect your inventory data in FocalStudio to cross reference with offline product pages.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -50,10 +36,6 @@
       "issue-description":"From the ballon bleu PDP, clicking on the ballon Bleu Small model redirect to a missing page",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-08-23+at+9.50.19%E2%80%AFAM.mov",
-      "issue-fix-1h":"Scheduled Page Availability Monitoring",
-      "issue-fix-1c":"Use a tool like UptimeRobot or Pingdom to monitor the availability of key product pages.",
-      "issue-fix-2h":"Automated Inventory vs. Page Status Comparison",
-      "issue-fix-2c":"Create a script that checks if pages with inventory are live.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -67,14 +49,6 @@
       "issue-description":"The Love Necklace 3 Diamonds PDP takes 4 seconds to load, significantly longer than average",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b273811be207fdbd9de4_love_necklace_3_diamonds.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Love_Necklace_3_diamonds.mov",
-      "issue-fix-1h":"Heavy Assets",
-      "issue-fix-1c":"Large images, videos, or scripts could be slowing down the page. Optimize and compress these assets to improve load times.",
-      "issue-fix-2h":"Excessive HTTP Requests",
-      "issue-fix-2c":"Too many requests can delay the page load. Combine files where possible, and use asynchronous loading for scripts.",
-      "issue-fix-3h":"Unoptimized Code",
-      "issue-fix-3c":"Poorly written code or lack of minification can affect performance. Review and refactor the code to streamline loading.",
-      "issue-fix-4h":"Server Performance",
-      "issue-fix-4c":"A slow server response can lead to delays. Consider upgrading hosting or using a content delivery network (CDN) to distribute the load.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -88,8 +62,6 @@
       "issue-description":"The Diamond Collection Page header contains a broken image, with no placeholder in it's place",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/diamond_collection_rings.mov",
-      "issue-fix-1h":"Missing Content",
-      "issue-fix-1c":"The product page may be incomplete or missing essential elements like images or descriptions.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -103,14 +75,6 @@
       "issue-description":"The link to the page from https://www.cartier.com/fr-fr/collections/watchmaking/vision is broken",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.33.37.mov",
-      "issue-fix-1h":"Link Validation",
-      "issue-fix-1c":"The URL might be incorrect or outdated. Verify and update the link to point to the correct destination.",
-      "issue-fix-2h":"Page Removal or Relocation",
-      "issue-fix-2c":"The target page may have been deleted or moved. Ensure that the page still exists or create a proper redirect to the new location.",
-      "issue-fix-3h":"Typos or Formatting Issues",
-      "issue-fix-3c":"Minor errors in the URL structure can break a link. Double-check for any typos or formatting mistakes.",
-      "issue-fix-4h":"External Link Changes",
-      "issue-fix-4c":"If the link points to an external site, it may have been changed or removed. Contact the external site owner or find an alternative resource.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -124,10 +88,6 @@
       "issue-description":"The link to the page from https://www.cartier.com/en-us/gifts/summer.html is broken",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-06+at+14.18.47.mov",
-      "issue-fix-1h":"Link Mismatch",
-      "issue-fix-1c":"The product recommendation may be pointing to an outdated or incorrect URL.",
-      "issue-fix-2h":"Product Discontinuation",
-      "issue-fix-2c":"The recommended product might no longer be available on the website. Verify inventory data.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -141,10 +101,6 @@
       "issue-description":"The link to the page from https://www.cartier.com/en-us/grain-de-cafe.html is broken",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.37.13.mov",
-      "issue-fix-1h":"Link Mismatch",
-      "issue-fix-1c":"The product recommendation may be pointing to an outdated or incorrect URL.",
-      "issue-fix-2h":"Product Discontinuation",
-      "issue-fix-2c":"The recommended product might no longer be available on the website. Verify inventory data.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -158,10 +114,6 @@
       "issue-description":"The link to the page from https://www.cartier.com/en-us/grain-de-cafe.html is broken",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.39.31.mov",
-      "issue-fix-1h":"Link Mismatch",
-      "issue-fix-1c":"The product recommendation may be pointing to an outdated or incorrect URL.",
-      "issue-fix-2h":"Product Discontinuation",
-      "issue-fix-2c":"The recommended product might no longer be available on the website. Verify inventory data.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -175,14 +127,6 @@
       "issue-description":"The link to the page from https://www.cartier.com/en-us/high-jewelry/exceptional-stones/ is broken",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.41.47.mov",
-      "issue-fix-1h":"Link Validation",
-      "issue-fix-1c":"The URL might be incorrect or outdated. Verify and update the link to point to the correct destination.",
-      "issue-fix-2h":"Page Removal or Relocation",
-      "issue-fix-2c":"The target page may have been deleted or moved. Ensure that the page still exists or create a proper redirect to the new location.",
-      "issue-fix-3h":"Typos or Formatting Issues",
-      "issue-fix-3c":"Minor errors in the URL structure can break a link. Double-check for any typos or formatting mistakes.",
-      "issue-fix-4h":"External Link Changes",
-      "issue-fix-4c":"If the link points to an external site, it may have been changed or removed. Contact the external site owner or find an alternative resource.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -196,10 +140,6 @@
       "issue-description":"The link to the page from https://www.cartier.com/en-us/panthere-de-cartier.html is broken",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo/s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.47.09.mov",
-      "issue-fix-1h":"Link Mismatch",
-      "issue-fix-1c":"The product recommendation may be pointing to an outdated or incorrect URL.",
-      "issue-fix-2h":"Product Discontinuation",
-      "issue-fix-2c":"The recommended product might no longer be available on the website. Verify inventory data.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -213,14 +153,6 @@
       "issue-description":"The link to the page from https://www.cartier.com/en-us/high-jewelry/know-how/ is broken",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.44.26.mov",
-      "issue-fix-1h":"Link Validation",
-      "issue-fix-1c":"The URL might be incorrect or outdated. Verify and update the link to point to the correct destination.",
-      "issue-fix-2h":"Page Removal or Relocation",
-      "issue-fix-2c":"The target page may have been deleted or moved. Ensure that the page still exists or create a proper redirect to the new location.",
-      "issue-fix-3h":"Typos or Formatting Issues",
-      "issue-fix-3c":"Minor errors in the URL structure can break a link. Double-check for any typos or formatting mistakes.",
-      "issue-fix-4h":"External Link Changes",
-      "issue-fix-4c":"If the link points to an external site, it may have been changed or removed. Contact the external site owner or find an alternative resource.",
       "issue-meta-time":"Sep 15, 2024"
    },
    {
@@ -234,14 +166,6 @@
       "issue-description":"The 'Les Necessaires A Parfum Cartier' takes 3 seconds to load, significantly longer than average",
       "issue-image-link":"https://cdn.prod.website-files.com/66ba3bdf3b849ed605d1b67e/66d8b2734f2658d7a759f842_diabolo_headband.avif",
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.54.07.mov",
-      "issue-fix-1h":"Heavy Assets",
-      "issue-fix-1c":"Large images, videos, or scripts could be slowing down the page. Optimize and compress these assets to improve load times.",
-      "issue-fix-2h":"Excessive HTTP Requests",
-      "issue-fix-2c":"Too many requests can delay the page load. Combine files where possible, and use asynchronous loading for scripts.",
-      "issue-fix-3h":"Unoptimized Code",
-      "issue-fix-3c":"Poorly written code or lack of minification can affect performance. Review and refactor the code to streamline loading.",
-      "issue-fix-4h":"Server Performance",
-      "issue-fix-4c":"A slow server response can lead to delays. Consider upgrading hosting or using a content delivery network (CDN) to distribute the load.",
       "issue-meta-time":"Sep 15, 2024"
    }
 ]
