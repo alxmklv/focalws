@@ -1,30 +1,95 @@
 {
   "typeID1": [
     {
-      "header": "Fix for Broken Product Page",
-      "content": "Update the product variant selector to correctly handle Black variant selection."
+      "header": "Server Error",
+      "content": "The page might be down due to a server issue. Check the server status and logs to identify and resolve any errors."
     },
     {
-      "header": "Redirect Issue",
-      "content": "Fix the redirection rule that leads to a broken page."
+      "header": "Missing or Corrupt Files",
+      "content": "Essential files like HTML, CSS, or JavaScript may be missing or corrupted. Verify the file integrity and restore any missing or damaged files."
+    },
+    {
+      "header": "Incorrect URL Routing",
+      "content": "The page might not load due to incorrect routing or URL mapping. Review the routing configuration and ensure the URL points to the correct page."
+    },
+    {
+      "header": "Script or Plugin Conflicts",
+      "content": "Conflicts between scripts or plugins could be causing the page to break. Disable or update conflicting plugins or scripts to resolve the issue."
+    },
+    {
+      "header": "Browser Compatibility Issues",
+      "content": "The page might not render correctly in certain browsers. Test the page across different browsers and fix any compatibility issues."
     }
   ],
   "typeID2": [
     {
-      "header": "Product Offline Error",
-      "content": "Investigate the error logs and restore the product page."
+      "header": "Outdated link to product page",
+      "content": "Check in your CMS to see if the broken link here is the latest link to that product page."
+    },
+    {
+      "header": "Missing inventory",
+      "content": "Connect your inventory data in FocalStudio to cross reference with offline product pages."
+    },
+    {
+      "header": "Scheduled Page Availability Monitoring",
+      "content": "Connect your inventory data in FocalStudio to cross reference with offline product pages."
+    },
+    {
+      "header": "Automated Inventory vs. Page Status Comparison",
+      "content": "Create a script that checks if pages with inventory are live."
     }
+
   ],
   "typeID3": [
     {
-      "header": "Slow Loading Product Page",
-      "content": "Optimize the images on the product page to reduce load times."
+      "header": "Heavy Assets",
+      "content": "Large images, videos, or scripts could be slowing down the page. Optimize and compress these assets to improve load times."
+    },
+    {
+      "header": "Excessive HTTP Requests",
+      "content": "Too many requests can delay the page load. Combine files where possible, and use asynchronous loading for scripts."
+    },
+    {
+      "header": "Unoptimized Code",
+      "content": "Poorly written code or lack of minification can affect performance. Review and refactor the code to streamline loading."
+    },
+    {
+      "header": "Server Performance",
+      "content": "A slow server response can lead to delays. Consider upgrading hosting or using a content delivery network (CDN) to distribute the load."
     }
   ],
   "typeID4": [
     {
-      "header": "Broken Images or Missing Media",
-      "content": "Replace the broken header image on the Diamond Collection Page."
+      "header": "Missing Content",
+      "content": "The product page may be incomplete or missing essential elements like images or descriptions"
+    }
+  ],
+  "typeID5": [
+    {
+      "header": "Link Validation",
+      "content": "The URL might be incorrect or outdated. Verify and update the link to point to the correct destination."
+    },
+    {
+      "header": "Page Removal or Relocation",
+      "content": "The target page may have been deleted or moved. Ensure that the page still exists or create a proper redirect to the new location."
+    },
+    {
+      "header": "Typos or Formatting Issues",
+      "content": "Minor errors in the URL structure can break a link. Double-check for any typos or formatting mistakes."
+    },
+    {
+      "header": "External Link Changes",
+      "content": "If the link points to an external site, it may have been changed or removed. Contact the external site owner or find an alternative resource."
+    }
+  ],
+  "typeID6": [
+    {
+      "header": "Link Mismatch",
+      "content": "The product recommendation may be pointing to an outdated or incorrect URL."
+    },
+    {
+      "header": "Product Discontinuation",
+      "content": "The recommended product might no longer be available on the website. Verify inventory data."
     }
   ]
 }
