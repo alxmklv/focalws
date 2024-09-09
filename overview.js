@@ -310,24 +310,29 @@ $(document).ready(function() {
   });
 
 
-  ////Hide realized 
-
+  ////Hide realized
+  
   $(document).ready(function() {
-    $('.hide-realized').click(function() {
-        var container = $(this).closest('.realized-table'); // Get the parent container with class realized-table
-        container.children('.issues_table_realized').hide(); // Hide all issues_table_realized elements
+      $('.hide-realized').click(function() {
+          // Hide only the parent .issues_table_realized of the clicked button
+          var parentIssue = $(this).closest('.issues_table_realized');
+          parentIssue.hide();
 
-        // Check if all issues_table_realized elements are hidden and hide the container if they are
-        var allHidden = true;
-        container.children('.issues_table_realized').each(function() {
-            if ($(this).css('display') !== 'none') {
-                allHidden = false;
-                return false; // Break the loop if we find a visible issue
-            }
-        });
+          // Get the closest parent .realized-table
+          var container = parentIssue.closest('.realized-table');
 
-        if (allHidden) {
-            container.hide(); // Hide the realized-table container
-        }
-    });
-});
+          // Check if all .issues_table_realized elements within this container are hidden
+          var allHidden = true;
+          container.children('.issues_table_realized').each(function() {
+              if ($(this).css('display') !== 'none') {
+                  allHidden = false;
+                  return false; // Break the loop if we find a visible issue
+              }
+          });
+
+          // If all .issues_table_realized elements are hidden, hide the .realized-table container
+          if (allHidden) {
+              container.hide();
+          }
+      });
+  });
