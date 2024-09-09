@@ -9,7 +9,7 @@
       "issue-revenue":"-100%",
       "issue-description":"From the Ballon De Cartier page, clicking on the ballon blanc recommended products redirect to a missing page",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Ballon+Blanc.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Ballon%2BBlanc.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -23,7 +23,7 @@
       "issue-revenue":"-100%",
       "issue-description":"From the ballon bleu product page https://www.cartier.com/en-us/watches/collections/ballon-de-cartier/ballon-bleu-de-cartier-watch--CRW4BB0035.html, clicking on the ballon Bleu Small model  redirect to a missing page",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-08-23+at+9.50.19%E2%80%AFAM.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-08-23%2Bat%2B9.50.19%E2%80%AFAM.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -37,7 +37,7 @@
       "issue-revenue":"-100%",
       "issue-description":"From the Diabolo Headband PDP, clicking on the Black variant redirects the user to a broken page",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_broken.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Diabolo+Headband.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Diabolo%2BHeadband.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -51,7 +51,7 @@
       "issue-revenue":"-100%",
       "issue-description":"The link to the page from https://www.cartier.com/en-us/gifts/summer.html is broken",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-06+at+14.18.47.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-06%2Bat%2B14.18.47.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -65,7 +65,7 @@
       "issue-revenue":"-100%",
       "issue-description":"The link to the page from https://www.cartier.com/en-us/grain-de-cafe.html is broken",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.37.13.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-05%2Bat%2B16.37.13.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -79,7 +79,7 @@
       "issue-revenue":"-100%",
       "issue-description":"The link to the page from https://www.cartier.com/en-us/grain-de-cafe.html is broken",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.39.31.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-05%2Bat%2B16.39.31.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -93,7 +93,7 @@
       "issue-revenue":"-100%",
       "issue-description":"The link to the page from https://www.cartier.com/en-us/panthere-de-cartier.html is broken",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.47.09.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-05%2Bat%2B16.47.09.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -107,7 +107,7 @@
       "issue-revenue":"-100%",
       "issue-description":"The product page is missing, but is linked in https://www.cartier.com/en-us/watches/collections/baignoire/baignoire-watch-size-16--CRWGBA0045.html",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-09+at+10.30.13.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-09%2Bat%2B10.30.13.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -121,7 +121,7 @@
       "issue-revenue":"-100%",
       "issue-description":"The link to the page from https://www.cartier.com/en-us/grain-de-cafe.html is broken",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/cafe_ring.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/cafe_ring.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
     },
@@ -135,7 +135,7 @@
       "issue-revenue":"-100%",
       "issue-description":"The link to the page from https://www.cartier.com/en-us/tank-francaise.html is broken",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/tank_francaise.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/tank_francaise.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
     },
@@ -149,7 +149,7 @@
       "issue-revenue":"-100%",
       "issue-description":"From the TANK MUST SOLARBEAT™ WATCH PDP, clicking on the Large model redirects the user to a missing page",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/tank_watch.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/tank_watch.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
     },
@@ -163,7 +163,7 @@
       "issue-revenue":"-100%",
       "issue-description":"The link to the page from https://www.cartier.com/en-us/high-jewelry/know-how/ is broken",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.44.26.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-05%2Bat%2B16.44.26.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -191,7 +191,7 @@
       "issue-revenue":"-40%",
       "issue-description":"The Love Necklace 3 Diamonds PDP takes 4 seconds to load, significantly longer than average",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/necklace_slow.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Love_Necklace_3_diamonds.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Love_Necklace_3_diamonds.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -205,7 +205,7 @@
       "issue-revenue":"-5%",
       "issue-description":"The link to the page from https://www.cartier.com/en-us/high-jewelry/exceptional-stones/ is broken",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/page_removed.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-05+at+16.41.47.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-05%2Bat%2B16.41.47.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -219,7 +219,7 @@
       "issue-revenue":"-5%",
       "issue-description":"Specifications images missing for Tortue watch, leaving an empty space on the page",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/watch_missing_img.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-09+at+10.28.19.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-09%2Bat%2B10.28.19.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -233,7 +233,7 @@
       "issue-revenue":"-5%",
       "issue-description":"Specifications images missing for Tortue watch, leaving an empty space on the page",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/watch_missing_img.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-09+at+10.27.16.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-09%2Bat%2B10.27.16.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    },
@@ -247,7 +247,7 @@
       "issue-revenue":"-5%",
       "issue-description":"Specifications images missing for Tortue watch, leaving an empty space on the page",
       "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/watch_missing_img.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-09+at+10.27.16.mov",
+      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-09%2Bat%2B10.27.16.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
    }
