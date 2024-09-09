@@ -308,3 +308,26 @@ $(document).ready(function() {
           icon.toggleClass("rotated");  // Toggle the rotated class for the icon
       });
   });
+
+
+  ////Hide realized 
+
+  $(document).ready(function() {
+    $('.hide-realized').click(function() {
+        var container = $(this).closest('.realized-table'); // Get the parent container with class realized-table
+        container.children('.issues_table_realized').hide(); // Hide all issues_table_realized elements
+
+        // Check if all issues_table_realized elements are hidden and hide the container if they are
+        var allHidden = true;
+        container.children('.issues_table_realized').each(function() {
+            if ($(this).css('display') !== 'none') {
+                allHidden = false;
+                return false; // Break the loop if we find a visible issue
+            }
+        });
+
+        if (allHidden) {
+            container.hide(); // Hide the realized-table container
+        }
+    });
+});
