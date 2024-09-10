@@ -222,19 +222,5 @@
       "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-09%2Bat%2B10.27.16.mp4",
       "issue-meta-time":"Sep 15, 2024",
       "is-fixed": false
-   },
-   {
-      "issueID":"000020",
-      "typeID":"typeID4",
-      "issue-type":"Broken Images or Missing Media",
-      "issue-severity":"Medium",
-      "issue-product":"Tortue Watch",
-      "issue-product-url":"https://www.cartier.com/en-us/watches/collections/tortue/tortue-watch--CRWJTO0009.html",
-      "issue-revenue":"-5%",
-      "issue-description":"Specifications images missing for Tortue watch, leaving an empty space on the page",
-      "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/watch_missing_img.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen%2BRecording%2B2024-09-09%2Bat%2B10.27.16.mp4",
-      "issue-meta-time":"Sep 15, 2024",
-      "is-fixed": false
    }
 ]
