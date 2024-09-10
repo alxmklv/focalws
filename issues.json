@@ -168,20 +168,6 @@
       "is-fixed": false
    },
    {
-      "issueID":"000015",
-      "typeID":"typeID3",
-      "issue-type":"Slow Loading Page",
-      "issue-severity":"Medium",
-      "issue-product":"Les Necessaires A Parfum Cartier",
-      "issue-product-url":"https://www.cartier.com/en-us/fragrances/high-perfumery/les-necessaires-a-parfum-cartier/",
-      "issue-revenue":"-40%",
-      "issue-description":"The Les Necessaires A Parfum Cartier page takes 3 seconds to load, significantly longer than average",
-      "issue-image-link":"https://focalvideo.s3.us-east-2.amazonaws.com/necessaires_slow.png",
-      "issue-video-link":"https://focalvideo.s3.us-east-2.amazonaws.com/Screen+Recording+2024-09-09+at+17.04.38.mp4",
-      "issue-meta-time":"Sep 15, 2024",
-      "is-fixed": false
-   },
-   {
       "issueID":"000016",
       "typeID":"typeID3",
       "issue-type":"Slow Loading Page",
